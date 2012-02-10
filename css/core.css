@@ -1,0 +1,76 @@
+body {
+	color: #000;
+	font: 14px/1.8em "PT Serif", serif;
+	padding-top: 59.301px;
+	padding-bottom: 2.618em;
+	-webkit-font-smoothing: antialiased;
+	background: #fffffe url(subtle_texture.png) repeat;
+}
+
+#posts {
+	width: 657.586px;
+	margin: auto;
+	padding-bottom: 2.618em;
+}
+
+h1 {
+	font-size: 22.652px;
+	line-height: 1.618em;
+}
+
+h2 {
+	font-size: 36.651px;
+	line-height: 1.618em;
+}
+
+h3 {
+	text-align: center;
+	font-size: 59.301px;
+	line-height: 1.618em;
+	padding-bottom: .618em;
+}
+
+.post {
+	padding-bottom: 1.618em;
+	margin-bottom: 1.618em;
+}
+
+.title {
+	
+}
+
+.date {
+	color: #bebebe;
+}
+
+.content {
+	list-style-type: none;
+	margin-top: 14px;
+	display: block;
+}
+
+.file {
+	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
+}
+
+p {
+	text-indent: 50px;
+	margin-top: .618em;
+}
+
+pre {
+	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
+}
+
+a {
+	color: #4183c4;
+}
+
+a:hover {
+	color: #4183c4;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #597eb2;
+}

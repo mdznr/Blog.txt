@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+
+<title>Matt Zanchelli</title>
+<description>RCOS Projects Blog</description>
+<link>http://mdznr.com/blog/</link>
+<lastBuildDate>Wed, 08 Feb 2012 00:01:00 +0000 </lastBuildDate>
+<pubDate>Mon, 06 Feb 2012 16:45:00 +0000 </pubDate>
+<ttl>1800</ttl>
+
+<item>
+<title>Syntax Highlighting</title>
+<description>I've been working on getting some nice syntax highlighting</description>
+<link>http://mdznr.com/blog</link>
+<pubDate>Tue, 07 Feb 2012 16:45:00 +0000 </pubDate>
+</item>
+
+<item>
+<title>Initial Commit</title>
+<description>I'm really excited about RCOS</description>
+<link>http://mdznr.com/blog</link>
+<pubDate>Mon, 06 Feb 2012 16:45:00 +0000 </pubDate>
+</item>
+
+</channel>
+</rss>
