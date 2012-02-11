@@ -11,16 +11,33 @@
 
 <item>
 <title>Syntax Highlighting</title>
-<description>I've been working on getting some nice syntax highlighting</description>
+<description><![CDATA[<p>I've been working on getting some nice <a href="http://steamdev.com/snippet/">syntax highlighting</a> with custom a custom colour scheme, as I will probably need this in this type of blog. Below, I've made use of this new feature.</p>
+			<p>I encountered a problem today in PHP while coding my <a href="https://github.com/mdznr/ClouDB">ClouDB</a> project. I made a config.php file containing variables important to establishing a connection to a database to store users' login information. However, I wanted to make sure that if someone were to try and view 'config.php' on the server, it would redirect them to the log in page. However, since I included 'config.php' in 'index.php', there would be an infinite redirect loop. Luckily, PHP caught on quick and stopped itself from loaded the page. So to overcome this problem, I just used a redirect in HTML in the 'config.php' file. But, even that wouldn't work, as it would actually send the user into an infinite loop of page redirects that isn't stopped by PHP. Does anyone know how I could fix this? I don't want to edit anything that would require modification of files outside of the ones I've made. I want this to be able to work on other servers easily.</p>
+			<p>File: index.php</p>
+			<pre class="php">
+include "config.php";</pre>
+			<p>File: config.php</p>
+			<pre class="php">
+&lt;?php
+//	Configuration options
+?>	
+&lt;html>
+&lt;head>
+	&lt;meta http-equiv="refresh" content="0;url=index.php">
+&lt;/head>
+&lt;/html>
+</pre>]]>
+</description>
 <link>http://mdznr.com/blog</link>
-<pubDate>Tue, 07 Feb 2012 16:45:00 +0000 </pubDate>
 </item>
 
 <item>
 <title>Initial Commit</title>
-<description>I'm really excited about RCOS</description>
+<description><![CDATA[<p>I thought today would be a great day to make a blog and "commit" my first post by talking about my RCOS project(s). Did you like my Git joke? <a href="http://www.peterhajas.com/blog.html">Peter</a> taught me a lot about Git and I can already tell it'll make a huge impact on me as a developer, especially with my RCOS projects. You can check out his talk <a href="https://youtu.be/XHQ5hGcta6Q">here</a>.</p>
+<p>I have never tried to make a blog like this before, so of course to find out about blogging systems, I checked online. The task was so overwhelming. So what did I do being a developer? I make my own blogging platform. I didn't want a blogging system with loads of unncessary extra features, and confusing installation. So I sat down and thought what I needed in a blog. First, I needed it to be super easy to install and maintain. I also wanted a very clean design, as you can see. Today I set up very basic functionality of it, but will be adding to it so that other people could eventually install it and use it. This blog will soon be on GitHub, too.</p>
+<p>This is my first semester in RCOS and am really excited. From just the beginning of this semester, I've learned so much about Computer Science and hope to continue learning throughout the semester. Thanks for checking out my blog and check back for updates on my progress.</p>]]>
+</description>
 <link>http://mdznr.com/blog</link>
-<pubDate>Mon, 06 Feb 2012 16:45:00 +0000 </pubDate>
 </item>
 
 </channel>

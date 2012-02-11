@@ -17,16 +17,11 @@
 			<?php
 				include("includes/functions.php");
 				$dir = "posts";
-				$posts = scandir( $dir . "/" );
-				//$posts = glob('*.txt');
+				// $posts = scandir( $dir . "/" );
+				$posts = glob('*.txt');
 				usort($posts, earlierPost);
-				for ( $i=0; $i<count($posts); $i++ ) {	// DO: make exception for '.' and '..'
-					if( is_file( $dir . "/" . $posts[$i] ) && substr($posts[$i], -4) == '.txt' )
-					{
-					// echo "<span class='date'>" . date( 'n.d.y', filemtime( $dir . "/" . $posts[i]) ) . "</span>";
-					// echo "<h1 class='title'>" . substr($posts[$i], 0, count($posts[$i])-5) . "</h1>";
+				for ( $i=0; $i<count($posts); $i++ ) {
 					echo "<div class='content'>" . file_get_contents( $dir . "/" . $posts[$i] ) . "</div>";
-					}
 				}
 			?>
 	</div>
