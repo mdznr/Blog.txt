@@ -17,11 +17,11 @@
 			<?php
 				include("includes/functions.php");
 				$dir = "posts";
-				// $posts = scandir( $dir . "/" );
-				$posts = glob('*.txt');
+				opendir( $dir );
+				$posts = glob( $dir . '/*.txt' );
 				usort($posts, earlierPost);
 				for ( $i=0; $i<count($posts); $i++ ) {
-					echo "<div class='content'>" . file_get_contents( $dir . "/" . $posts[$i] ) . "</div>";
+					echo "<div class='content'>" . file_get_contents( $posts[$i] ) . "</div>";
 				}
 			?>
 	</div>
