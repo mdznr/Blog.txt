@@ -1,17 +1,12 @@
 <?php
 
-function earlier($a, $b)
-{
-	return filemtime($a) < filemtime($b);
-}
-
-function earlierPost($a, $b)
+function recentPost($a, $b)	//	Reads post date from first line of .txt document
 {
 	$filea = file($a);
 	$fileb = file($b);
 	$timea = strtotime($filea[0]);
 	$timeb = strtotime($fileb[0]);
-	return $timea < $timeb;
+	return $timea < $timeb;	// Returns true if post a is older
 }
 
 ?>

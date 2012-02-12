@@ -1,3 +1,0 @@
-Feb 11 2012
-<h1 class='title'>Post 1</h1>
-<p>Test1</p>
