@@ -30,9 +30,9 @@ h3 {
 	padding-bottom: .618em;
 }
 
-.post {
+.content {
 	padding-bottom: 1.618em;
-	margin-bottom: 1.618em;
+	margin-bottom: .618em;
 }
 
 .title {
@@ -56,6 +56,7 @@ h3 {
 
 .file {
 	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
+	padding-top: .618em;
 }
 
 p {
