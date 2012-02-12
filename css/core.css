@@ -34,8 +34,13 @@ h3 {
 	margin-top: .618em;
 }
 
-.title {
-	
+.title a {
+	text-decoration: none;
+	color: #000;
+}
+
+.title a:hover {
+	color: #515151;
 }
 
 .date {

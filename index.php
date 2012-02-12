@@ -41,7 +41,7 @@
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
 					echo "<article class='content'> <span class='date'>" . $content[0] . "</span>";
-					echo "<a href=\"?post=" . $posts[$i] . "\"><h1 class='title'>" . $content[1] . "</h1></a>";
+					echo "<h1 class='title'><a href=\"?post=" . $posts[$i] . "\">" . $content[1] . "</a></h1>";
 					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 					{
 						echo "<p>" . $content[$j] . "</p>";
