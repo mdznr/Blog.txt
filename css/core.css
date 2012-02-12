@@ -34,12 +34,12 @@ h3 {
 	margin-top: .618em;
 }
 
-.title a, .title a:visited {
+.title a, .title a:visited, h3 a, h3 a:visited {
 	text-decoration: none;
 	color: #000;
 }
 
-.title a:hover, .title a:active {
+.title a:hover, .title a:active, h3 a:hover, h3 a:active {
 	color: #515151;
 }
 

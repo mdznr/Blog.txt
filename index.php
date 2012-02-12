@@ -33,7 +33,7 @@
 
 </head>
 <body>
-	<h3 class="blogtitle"><?php echo $title ?></h3>
+	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
 	<div id="posts">
 		<?php
 			if ( $post ) // Dangerous ../ bug
