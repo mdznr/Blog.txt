@@ -21,19 +21,12 @@
 				$postsPerPage = $_GET["postsPerPage"];	//	Overrides with URL arguments
 				$page = 0;	//	Page # (Starts with 0)
 				$page = $_GET["page"];	//	Overrides with URL arguments
-				$post = null;	//	Individual post (no specific post set by default)
-				$post = $_GET["post"];	//	Individual posts
 				$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts 
 				opendir( $dir );
 				$posts = glob( $dir . '/*.txt' );
 				usort($posts, earlierPost);
-				if ( $post ) {
-					echo "<div class='content'>" . file_get_contents( $dir . '/' . $post ) . "</div>";
-				}
-				else {
-					for ( $i=$offset; $i<(count($posts)+$offset) && $i<($postsPerPage+$offset); $i++ ) {
-						echo "<div class='content'>" . file_get_contents( $posts[$i] ) . "</div>";
-					}
+				for ( $i=$offset; $i<(count($posts)+$offset) && $i<($postsPerPage+$offset); $i++ ) {
+					echo "<div class='content'>" . file_get_contents( $posts[$i] ) . "</div>";
 				}
 			?>
 	</div>
