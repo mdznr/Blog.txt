@@ -17,10 +17,14 @@
 			<?php
 				include("includes/functions.php");
 				$dir = "posts";
+				$postsPerPage = 3;
+				$page = 0;
+				$page = $_GET["page"];
+				$offset = $postsPerPage * $page;
 				opendir( $dir );
 				$posts = glob( $dir . '/*.txt' );
 				usort($posts, earlierPost);
-				for ( $i=0; $i<count($posts); $i++ ) {
+				for ( $i=$offset; $i<(count($posts)+$offset) && $i<($postsPerPage+$offset); $i++ ) {
 					echo "<div class='content'>" . file_get_contents( $posts[$i] ) . "</div>";
 				}
 			?>
