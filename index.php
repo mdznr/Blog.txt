@@ -36,12 +36,24 @@
 	<h3 class="blogtitle"><?php echo $title ?></h3>
 	<div id="posts">
 		<?php
-			if ( $post ) { echo "<article class='content'>" . file_get_contents( $dir . "/" . strip_tags($post) . ".txt" ) . "</article>"; } // Dangerous ../ bug
+			if ( $post ) // Dangerous ../ bug
+			{
+				$content = file($dir . "/" . strip_tags($post) . ".txt");
+				echo "<article class='content'>";	// Start article
+				echo "<span class='date'>" . $content[0] . "</span>";	// Display date with date formatting
+				echo "<h1 class='title'>" . $content[1] . "</h1>";	//	Display Title
+				for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
+				{
+					echo "<p>" . $content[$j] . "</p>";
+				}
+				echo "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
+			}
 			else {	// Loop to load posts' content
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
-					echo "<article class='content'> <span class='date'>" . $content[0] . "</span>";
-					echo "<h1 class='title'><a href=\"?post=" . substr($posts[$i], strlen($dir), -4) . "\">" . $content[1] . "</a></h1>";
+					echo "<article class='content'>";	// Start article
+					echo "<span class='date'>" . $content[0] . "</span>";	// Display date with date formatting
+					echo "<h1 class='title'><a href=\"?post=" . substr($posts[$i], strlen($dir) + 1, -4) . "\">" . $content[1] . "</a></h1>";	//	Display file name after the directory and / to the end, minus 4 for the '.txt' extension
 					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 					{
 						echo "<p>" . $content[$j] . "</p>";
