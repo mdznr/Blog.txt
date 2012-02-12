@@ -7,7 +7,7 @@
 	
 	if ( $_GET["post"] ) { $post = $_GET["post"]; }
 
-	$postsPerPage = 4;	//	Will be configurable
+	$postsPerPage = 5;	//	Will be configurable
 	if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
 
 	$page = 0;	//	Page # (Starts with 0)
@@ -39,7 +39,14 @@
 			if ( $post ) { echo "<article class='content'>" . file_get_contents( $dir . "/" . strip_tags($post) . ".txt" ) . "</article>"; } // Dangerous ../ bug
 			else {	// Loop to load posts' content
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
-					echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally.
+					$content = file($posts[$i]);
+					echo "<article class='content'> <span class='date'>" . $content[0] . "</span>";
+					echo "<a href=\"?post=" . $posts[$i] . "\"><h1 class='title'>" . $content[1] . "</h1></a>";
+					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
+					{
+						echo "<p>" . $content[$j] . "</p>";
+					}
+					echo "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
 				}
 				echo "</div> <div id='nav'>";	//	Only Displays if not individual post
 				if ( $page > 0 )	//	Only display if previous page exists
