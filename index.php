@@ -37,20 +37,22 @@
 			}
 		?>
 	</div>
-	<?php
-		if ( $page > 0 )	//	Only display if previous page exists
-		{
-			echo "<a href=\"?page=";
-			echo $page - 1;
-			echo "\">Previous</a>";
-		}
-		if ( true )	// Only display is next page exists
-		{
-			echo "<a href=\"?page=";
-			echo $page + 1;
-			echo "\">Next</a>";
-		}
-	?>
+	<div id="nav">
+		<?php
+			if ( $page > 0 )	//	Only display if previous page exists
+			{
+				echo "<a href=\"?page=";
+				echo $page - 1;
+				echo "\">Newer</a> ";
+			}
+			if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists
+			{
+				echo "<a href=\"?page=";
+				echo $page + 1;
+				echo "\">Older</a>";
+			}
+		?>
+	</div>
 	<script> $("pre.php").snippet("php",{style:"bright",transparent:true,showNum:true}); $("pre.html").snippet("html",{style:"bright",transparent:true,showNum:true}); </script>
 </body>
 </html>

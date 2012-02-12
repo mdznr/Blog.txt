@@ -49,6 +49,11 @@ h3 {
 	display: block;
 }
 
+#nav {
+	text-align: center;
+	word-spacing: 1em;
+}
+
 .file {
 	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
 }
