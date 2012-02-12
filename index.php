@@ -15,7 +15,7 @@
 
 	$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts
 
-	$posts = glob( $dir . '/*.txt' );
+	$posts = glob( $dir . '/*.txt' );	//	Only files that end in .txt in te $dir directory
 	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
 ?>
 <!doctype html>
@@ -41,7 +41,7 @@
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally.
 				}
-				echo "</div> <div id='nav'>";
+				echo "</div> <div id='nav'>";	//	Only Displays if not individual post
 				if ( $page > 0 )	//	Only display if previous page exists
 				{
 					echo "<a href=\"?page=";

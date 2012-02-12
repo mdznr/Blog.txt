@@ -27,12 +27,11 @@ h3 {
 	text-align: center;
 	font-size: 59.301px;
 	line-height: 1.618em;
-	padding-bottom: .618em;
 }
 
 .content {
-	padding-bottom: 1.618em;
-	margin-bottom: .618em;
+	padding-top: 1.618em;
+	margin-top: .618em;
 }
 
 .title {
