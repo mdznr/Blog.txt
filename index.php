@@ -4,6 +4,8 @@
 	$title = "Matt Zanchelli";	//	Title for Blog
 
 	$dir = "posts";	//	Directory for storing posts
+	
+	if ( $_GET["post"] ) { $post = $_GET["post"]; }
 
 	$postsPerPage = 4;	//	Will be configurable
 	if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
@@ -33,9 +35,12 @@
 <body>
 	<h3 class="blogtitle"><?php echo $title ?></h3>
 	<div id="posts">
-		<?php // Loop to load posts' content
-			for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
-				echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";
+		<?php // Loop to load posts' content]
+			if ( $post ) { echo "<article class='content'>" . file_get_contents( $dir . "/" . strip_tags($post) . ".txt" ) . "</article>"; }
+			else {
+				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
+					echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";
+				}
 			}
 		?>
 	</div>
