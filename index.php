@@ -17,10 +17,11 @@
 			<?php
 				include("includes/functions.php");	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 				$dir = "posts";	//	Directory for storing posts
-				$postsPerPage = 5;	//	Will be configurable
-				$postsPerPage = $_GET["postsPerPage"];	//	Overrides with URL arguments
+				$postsPerPage = 4;	//	Will be configurable
+				if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
 				$page = 0;	//	Page # (Starts with 0)
-				$page = $_GET["page"];	//	Overrides with URL arguments
+				// $page = $_GET["page"];	//	Overrides with URL arguments
+				if ( $_GET["page"] ) { $page = $_GET["page"]; }	//	Overrides with URL arguments
 				$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts 
 				opendir( $dir );
 				$posts = glob( $dir . '/*.txt' );
