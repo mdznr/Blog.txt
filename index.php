@@ -1,9 +1,11 @@
 <?php
 	include("includes/functions.php");	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
+	
+	$title = "Matt Zanchelli";	//	Title for Blog
 
 	$dir = "posts";	//	Directory for storing posts
 
-	$postsPerPage = 3;	//	Will be configurable
+	$postsPerPage = 4;	//	Will be configurable
 	if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
 
 	$page = 0;	//	Page # (Starts with 0)
@@ -25,14 +27,14 @@
 <script type="text/javascript" src="js/jquery.snippet.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.snippet.min.css" />
 
-<title>Matt Zanchelli</title>
+<title><?php echo $title ?></title>
 
 </head>
 <body>
-	<h3 class="blogtitle">Matt Zanchelli</h3>
+	<h3 class="blogtitle"><?php echo $title ?></h3>
 	<div id="posts">
 		<?php // Loop to load posts' content
-			for ( $i=$offset; $i<(count($posts)+$offset) && $i<($postsPerPage+$offset); $i++ ) {
+			for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 				echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";
 			}
 		?>
