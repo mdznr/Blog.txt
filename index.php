@@ -17,7 +17,8 @@
 			<?php
 				include("includes/functions.php");
 				$dir = "posts";
-				$postsPerPage = 3;
+				$postsPerPage = 5;
+				$postsPerPage = $_GET["postsPerPage"];
 				$page = 0;
 				$page = $_GET["page"];
 				$offset = $postsPerPage * $page;
