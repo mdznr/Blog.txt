@@ -35,28 +35,25 @@
 <body>
 	<h3 class="blogtitle"><?php echo $title ?></h3>
 	<div id="posts">
-		<?php // Loop to load posts' content]
-			if ( $post ) { echo "<article class='content'>" . file_get_contents( $dir . "/" . strip_tags($post) . ".txt" ) . "</article>"; }
-			else {
-				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
-					echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";
-				}
-			}
-		?>
-	</div>
-	<div id="nav">
 		<?php
-			if ( $page > 0 )	//	Only display if previous page exists
-			{
-				echo "<a href=\"?page=";
-				echo $page - 1;
-				echo "\">Newer</a> ";
-			}
-			if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists
-			{
-				echo "<a href=\"?page=";
-				echo $page + 1;
-				echo "\">Older</a>";
+			if ( $post ) { echo "<article class='content'>" . file_get_contents( $dir . "/" . strip_tags($post) . ".txt" ) . "</article>"; } // Dangerous ../ bug
+			else {	// Loop to load posts' content
+				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
+					echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally.
+				}
+				echo "</div> <div id='nav'>";
+				if ( $page > 0 )	//	Only display if previous page exists
+				{
+					echo "<a href=\"?page=";
+					echo $page - 1;
+					echo "\">Newer</a> ";
+				}
+				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists
+				{
+					echo "<a href=\"?page=";
+					echo $page + 1;
+					echo "\">Older</a>";
+				}
 			}
 		?>
 	</div>
