@@ -3,7 +3,7 @@
 
 	$dir = "posts";	//	Directory for storing posts
 
-	$postsPerPage = 2;	//	Will be configurable
+	$postsPerPage = 3;	//	Will be configurable
 	if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
 
 	$page = 0;	//	Page # (Starts with 0)
@@ -31,12 +31,26 @@
 <body>
 	<h3 class="blogtitle">Matt Zanchelli</h3>
 	<div id="posts">
-		<?php
+		<?php // Loop to load posts' content
 			for ( $i=$offset; $i<(count($posts)+$offset) && $i<($postsPerPage+$offset); $i++ ) {
 				echo "<article class='content'>" . file_get_contents( $posts[$i] ) . "</article>";
 			}
 		?>
 	</div>
+	<?php
+		if ( $page > 0 )	//	Only display if previous page exists
+		{
+			echo "<a href=\"?page=";
+			echo $page - 1;
+			echo "\">Previous</a>";
+		}
+		if ( true )	// Only display is next page exists
+		{
+			echo "<a href=\"?page=";
+			echo $page + 1;
+			echo "\">Next</a>";
+		}
+	?>
 	<script> $("pre.php").snippet("php",{style:"bright",transparent:true,showNum:true}); $("pre.html").snippet("html",{style:"bright",transparent:true,showNum:true}); </script>
 </body>
 </html>
