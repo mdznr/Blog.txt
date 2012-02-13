@@ -36,7 +36,7 @@
 	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
 	<div id="posts">
 		<?php
-			if ( $post ) // Dangerous ../ bug
+			if ( $post ) // Dangerous '../' bug
 			{
 				$content = file($dir . "/" . strip_tags($post) . ".txt");
 				echo "<article class='content'>";	// Start article

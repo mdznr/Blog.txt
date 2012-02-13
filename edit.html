@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title>Just Testing</title>
+	<script type="text/javascript">
+		var bool = true;
+		function edit() {
+			var text;
+			if (bool) {
+				bool = false;
+				document.getElementById("text").style.display = "none";
+				document.getElementById("done").style.display = "";
+				document.getElementById("area").style.display = "block";
+				document.getElementById("area").value = document.getElementById("text").innerHTML;
+			}
+			else {
+				bool = true;
+				document.getElementById("area").style.display = "none";
+				document.getElementById("done").style.display = "none";
+				document.getElementById("text").style.display = "";
+				document.getElementById("text").innerHTML = document.getElementById("area").value;
+			}
+		}
+		function textAreaAdjust(o) {
+			o.style.height = "1px";
+			o.style.height = (25+o.scrollHeight)+"px";
+		}
+	</script>
+	<style>
+	body {
+		-webkit-font-smoothing: antialiased;
+		font: 18px Georgia;
+	}
+	#text {
+		width: 512px;
+		padding: 3px;
+	}
+	textarea {
+		width: 512px;
+		font: inherit;
+	}
+	</style>
+</head>
+<body>
+<div id="text" onclick="edit()">Hello World</div>
+<form>
+	<textarea onkeyup="textAreaAdjust(this)" id="area" rows="2" cols="30" style="display:none;overflow:hidden;"></textarea>
+	<input id="done" type="button" value="Done" style="display:none;" onclick="edit()">
+</form>
+</body>
+</html>
