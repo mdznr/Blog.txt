@@ -25,18 +25,37 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <?php
-	function createFile()
-	{
-		$filename = $post_["filename"];
-		$content = $post_["content"];
-		if ( file_exists( $post_["filename"] . ".txt" ) )
-		{
+	function newPost() {
+		$filename = preg_replace("/[^a-zA-Z0-9\._-]/", "", $_POST["filename"]);
+		if ( substr($filename, -4) != ".txt" ) {
+			$filename .= ".txt";
+		}
+		$content = $_POST["content"];
+		if ( file_exists( $filename . ".txt" ) ) {
 			echo "File already exists.";
 			return false;
+		} else {
+			$new = fopen( $filename, "w" );
+			fwrite( $new,  $content);
 		}
-		$new = fopen( $filename, "w" );
-		fwrite( $new,  $content);
 	}
-	
-	createFile();
+	newPost();
 ?>
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+	<form name="newPost" action="create.php" method="post" enctype="multipart/form-data">
+	
+		<label for="filename">Filename: </label><br />
+		<input name="filename" type="text" /><br />
+		
+		<label for="text">Content:</label><br />
+		<textarea name="content"></textarea><br />
+		
+		<input type="submit" />
+		
+	</form>
+</body>
+</html>
