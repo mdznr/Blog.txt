@@ -25,7 +25,9 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <?php
-	include("includes/functions.php");	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
+
+	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
+	include("includes/functions.php");	
 	
 	$title = "Matt Zanchelli";	//	Title for Blog
 
@@ -78,8 +80,8 @@
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
 					echo "<article class='content'>";	// Start article
-					echo "<span class='date'>" . $content[0] . "</span>";	// Display date with date formatting
-					echo "<h1 class='title'><a href=\"?post=" . substr($posts[$i], strlen($dir) + 1, -4) . "\">" . $content[1] . "</a></h1>";	//	Display file name after the directory and / to the end, minus 4 for the '.txt' extension
+					echo "<span class='date'><a href=\"?post=" . substr($posts[$i], strlen($dir) + 1, -4) . "\">" . $content[0] . "</a></span>";	// Display date with date formatting
+					echo "<h1 class='title'>" . $content[1] . "</h1>";	//	Display file name after the directory and / to the end, minus 4 for the '.txt' extension
 					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 					{
 						echo "<p>" . $content[$j] . "</p>";
