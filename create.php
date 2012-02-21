@@ -25,21 +25,21 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <?php
-	function newPost() {
+	if ( isset($_POST["filename"]) && isset($_POST["content"]) ) {
+		$dir = "posts";
 		$filename = preg_replace("/[^a-zA-Z0-9\._-]/", "", $_POST["filename"]);
 		if ( substr($filename, -4) != ".txt" ) {
 			$filename .= ".txt";
 		}
 		$content = $_POST["content"];
-		if ( file_exists( $filename . ".txt" ) ) {
+		if ( file_exists( $dir . "/" . $filename . ".txt" ) ) {
 			echo "File already exists.";
 			return false;
 		} else {
-			$new = fopen( $filename, "w" );
+			$new = fopen( $dir . "/" . $filename, "w" );
 			fwrite( $new,  $content);
 		}
 	}
-	newPost();
 ?>
 <!doctype html>
 <html>
