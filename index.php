@@ -29,17 +29,20 @@
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 	include("includes/functions.php");	
 	
-	$title = "Matt Zanchelli";	//	Title for Blog
-
+	$title = "Matt Thinks Different";	//	Title for Blog
+	$keywords = array("Apple", "blog", "Think Different", "Matt Zanchelli");
+	$description = "Matt Zanchelli runs a blog.";
+	$author = "Matt Zanchelli";
+	
 	$dir = "posts";	//	Directory for storing posts
 	
-	if ( $_GET["post"] ) { $post = $_GET["post"]; }
+	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
 	$postsPerPage = 5;	//	Will be configurable
 	if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
 
 	$page = 0;	//	Page # (Starts with 0)
-	if ( $_GET["page"] ) { $page = $_GET["page"]; }	//	Overrides with URL arguments
+	if ( $_GET["n"] ) { $page = $_GET["n"]; }	//	Overrides with URL arguments
 
 	$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts
 
@@ -59,6 +62,14 @@
 
 <title><?php echo $title ?></title>
 
+<?php echo "<meta name=\"keywords\" content=\"";
+for ($i=0;$i<sizeof($keywords);$i++) {
+	echo $keywords[$i] . ", ";	// echos each keyword with a comma following it
+}
+echo "\" />" ?>
+
+<?php echo "<meta name=\"description\" content=\"" . $description . "\" />" ?>
+<?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
 </head>
 <body>
 	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
@@ -80,7 +91,7 @@
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
 					echo "<article class='content'>";	// Start article
-					echo "<span class='date'><a href=\"?post=" . substr($posts[$i], strlen($dir) + 1, -4) . "\">" . $content[0] . "</a></span>";	// Display date with date formatting
+					echo "<span class='date'><a href=\"?p=" . substr($posts[$i], strlen($dir) + 1, -4) . "\">" . $content[0] . "</a></span>";	// Display date with date formatting
 					echo "<h1 class='title'>" . $content[1] . "</h1>";	//	Display file name after the directory and / to the end, minus 4 for the '.txt' extension
 					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 					{
@@ -91,13 +102,13 @@
 				echo "</div> <div id='nav'>";	//	Only Displays if not individual post
 				if ( $page > 0 )	//	Only display if previous page exists
 				{
-					echo "<a href=\"?page=";
+					echo "<a href=\"?n=";
 					echo $page - 1;
 					echo "\">Newer</a> ";
 				}
 				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists
 				{
-					echo "<a href=\"?page=";
+					echo "<a href=\"?n=";
 					echo $page + 1;
 					echo "\">Older</a>";
 				}
