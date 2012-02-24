@@ -43,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		$content = $_POST["content"];
 		if ( file_exists( $full ) ) {	//	Overwrites existing file
 			$existing = fopen( $full, w );
-			fwrite ( $existing, $date . "\n" . substr($filename, 0, -4) . "\n" $content );
+			fwrite ( $existing, $date . "\n" . substr($filename, 0, -4) . "\n" . $content );
 		} else {
 			$new = fopen( $full, w );	//	Or creates a new file
 			fwrite( $new,  $date . "\n" . substr($filename, 0, -4) . "\n" . $content );
@@ -56,41 +56,50 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<title>Edit</title>
 	<script type="text/javascript">
 		var bool = true;
-		function edit() {
-			var text;
+		function edit(one, two, three, a, b, c, submit) {
 			if (bool) {
 				bool = false;
-				document.getElementById("submit").style.display = "";
+				document.getElementById(submit).style.display = "";
 				
-				document.getElementById("1").style.display = "none";
-				document.getElementById("2").style.display = "none";
-				document.getElementById("3").style.display = "none";
+				//var elements = document.getElementsByClassName("original");
+				//for (var i=0; i<elements.length; i++) {
+				//	elements[i].style.display = "none";
+				//}
+				document.getElementById(one).style.display = "none";
+				document.getElementById(two).style.display = "none";
+				document.getElementById(three).style.display = "none";
 				
-				document.getElementById("a").style.display = "";
-				document.getElementById("a").value = document.getElementById("1").innerHTML;
+				document.getElementById(a).style.display = "";
+				document.getElementById(a).value = document.getElementById(one).innerHTML;
 				
-				document.getElementById("b").style.display = "";
-				document.getElementById("b").value = document.getElementById("2").innerHTML;
+				document.getElementById(b).style.display = "";
+				document.getElementById(b).value = document.getElementById(two).innerHTML;
 				
-				document.getElementById("c").style.display = "";
-				document.getElementById("c").value = document.getElementById("3").innerHTML;
+				document.getElementById(c).style.display = "";
+				document.getElementById(c).value = document.getElementById(three).innerHTML;
 			}
 			else {
 				bool = true;
-				document.getElementById("submit").style.display = "none";
+				document.getElementById(submit).style.display = "none";
 				
-				document.getElementById("1").style.display = "";
-				document.getElementById("1").innerHTML = document.getElementById("b").value;
+				//var editables = document.getElementsByClassName("editable");
+				//for (var i=0; i<editables.length; i++) {
+				//	editables[i].style.display = "";
+				//	editables[i].innerHTML = document.getElementById("a").value;
+				//}
 				
-				document.getElementById("2").style.display = "";
-				document.getElementById("2").innerHTML = document.getElementById("a").value;
+				document.getElementById(one).style.display = "";
+				document.getElementById(one).innerHTML = document.getElementById(a).value;
 				
-				document.getElementById("3").style.display = "";
-				document.getElementById("3").innerHTML = document.getElementById("c").value;
+				document.getElementById(two).style.display = "";
+				document.getElementById(two).innerHTML = document.getElementById(b).value;
 				
-				document.getElementById("a").style.display = "none";
-				document.getElementById("b").style.display = "none";
-				document.getElementById("c").style.display = "none";
+				document.getElementById(three).style.display = "";
+				document.getElementById(three).innerHTML = document.getElementById(c).value;
+				
+				document.getElementById(a).style.display = "none";
+				document.getElementById(b).style.display = "none";
+				document.getElementById(c).style.display = "none";
 			}
 		}
 		function textAreaAdjust(o) {
@@ -116,17 +125,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 </head>
 <body>
-	<div id="posts" onclick="edit()">
+	<div id="posts" onclick="edit('1', '2', '3', 'a', 'b', 'c', 'submit1')">
 		<div id="1" class="original"><?php echo "Date & Time"; ?></div>
-		<div id="s" class="original"><?php echo "File Name"; ?></div>
+		<div id="2" class="original"><?php echo "File Name"; ?></div>
 		<div id="3" class="original"><?php echo "Content goes here"; ?></div>
 	</div>
 	
 	<form name="newPost" action="create.php" method="post" enctype="multipart/form-data">
-		<textarea id="b" name="date" rows="1" style="display:none;resize:none;"></textarea><br />
-		<textarea id="a" name="filename" rows="1" style="display:none;resize:none;"></textarea><br />
-		<textarea id="c" name="content" style="display:none;"></textarea><br />
-		<input id="submit" type="submit" value="Done" style="display:none;resize:resize;" onclick="edit()"/>
+		<textarea id="a" class="editable" name="date" rows="1" style="display:none;resize:none;"></textarea><br />
+		<textarea id="b" class="editable" name="filename" rows="1" style="display:none;resize:none;"></textarea><br />
+		<textarea id="c" class="editable" name="content" style="display:none;"></textarea><br />
+		<input id="submit1" class="editable" type="submit" value="Done" style="display:none;resize:resize;" onclick="edit()"/>
+	</form>
+	
+	<div id="posts" onclick="edit('4', '5', '6', 'd', 'e', 'f', 'submit2')">
+		<div id="4" class="original"><?php echo "2Date & Time"; ?></div>
+		<div id="5" class="original"><?php echo "2File Name"; ?></div>
+		<div id="6" class="original"><?php echo "2Content goes here"; ?></div>
+	</div>
+
+	<form name="newPost" action="create.php" method="post" enctype="multipart/form-data">
+		<textarea id="d" class="editable" name="date" rows="1" style="display:none;resize:none;"></textarea><br />
+		<textarea id="e" class="editable" name="filename" rows="1" style="display:none;resize:none;"></textarea><br />
+		<textarea id="f" class="editable" name="content" style="display:none;"></textarea><br />
+		<input id="submit2" class="editable" type="submit" value="Done" style="display:none;resize:resize;" onclick="edit()"/>
 	</form>
 	
 </body>

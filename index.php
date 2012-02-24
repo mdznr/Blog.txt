@@ -78,7 +78,7 @@ echo "\" />" ?>
 			if ( $post ) // Dangerous '../' bug
 			{
 				$content = file($dir . "/" . strip_tags($post) . ".txt");
-				echo "<article class='content'>";	// Start article
+				echo "<article class='content' >";	// Start article
 				echo "<span class='date'>" . $content[0] . "</span>";	// Display date with date formatting
 				echo "<h1 class='title'>" . $content[1] . "</h1>";	//	Display Title
 				for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
@@ -90,7 +90,7 @@ echo "\" />" ?>
 			else {	// Loop to load posts' content
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
-					echo "<article class='content'>";	// Start article
+					echo "<article class='content' id=\"" . $i . "\" >";	// Start article & ID #
 					echo "<span class='date'><a href=\"?p=" . substr($posts[$i], strlen($dir) + 1, -4) . "\">" . $content[0] . "</a></span>";	// Display date with date formatting
 					echo "<h1 class='title'>" . $content[1] . "</h1>";	//	Display file name after the directory and / to the end, minus 4 for the '.txt' extension
 					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
