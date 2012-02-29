@@ -29,12 +29,35 @@
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 	include("includes/functions.php");	
 	
-	$title = "Matt Thinks Different";	//	Title for Blog
+	$title = "Blog.txt";	//	Title for Blog
 	$keywords = array("Apple", "blog", "Think Different", "Matt Zanchelli");
 	$description = "Matt Zanchelli runs a blog.";
 	$author = "Matt Zanchelli";
 	
 	$dir = "posts";	//	Directory for storing posts
+	
+	if ( isset($_FILES["file_upload"]) ) {
+		$file = $_FILES['file_upload'];	// This is our file variable
+		$name = $file['name'];
+		$tmp = $file['tmp_name'];
+		$size = $file['size'];
+		$type = $file['type'];
+		$max_size = 50 * 1024 * 1024;	// 50 megabytes 
+		$upload_dir = $dir . '/';
+		
+		if(($size > 0) && ($type !== "text/php")) {
+			if(!is_dir($upload_dir)){ echo $upload_dir . ' is not a directory'; }
+			else if($size > $max_size){ echo 'The file you are trying to upload is too big.'; }
+			else{
+				if(!is_uploaded_file($tmp)){ echo 'Could not upload your file at this time, please try again'; }	
+				else{
+					if(!move_uploaded_file($tmp, $upload_dir . $name)){ echo 'Could not move the uploaded file.'; }
+					else{ $message = $name . " was successfully uploaded!"; }	
+				}
+			}
+		}
+		elseif($type === "text/php"){ echo "You cannot upload that file here."; }
+	}
 	
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
@@ -53,7 +76,14 @@
 <html lang=en>
 <head>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css" />
-<link rel="stylesheet" type="text/css" href="css/core.css" />
+<?php
+	if ( $_GET["gruber"] ) { ?>
+		<link rel="stylesheet" type="text/css" href="css/gruber.css" /> <?php 	// Gruber stylesheet
+	}
+	else { ?>
+		<link rel="stylesheet" type="text/css" href="css/core.css" /> <?php 	// Regular stylesheet
+	}
+?>
 <link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -72,22 +102,42 @@ echo "\" />" ?>
 <?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
 </head>
 <body>
+	<form name="uploader" action="index.php" method="post" enctype="multipart/form-data" >
+		<input type="file" name="file_upload" onchange="document.uploader.submit()" style="background:#ff0000;position:fixed;top:0;right:0;height:100%;width:256px;opacity:0;" />
+		<input style="visibility:hidden;" name="upload_button" type="submit" value="Upload" />
+	</form>
+	
+	<div id="post" style="text-align:right;right:2.618em;top:1.618em;position:absolute;">
+	<a href="#" onclick="newPost.style.display=''"><img src="css/plus.png" alt="New Post" height="15px" width="15px" border="0" /></a><!-- replace img with data:// -->
+	</div>
+	
+	<div id="newPost" style="display:none;text-align:center;">
+		<form>
+			<input id="" type="text" placeholder="Date" /><br /><!-- Replace with real date -->
+			<input id="" type="text" placeholder="Title"><br />
+			<textarea id="content"></textarea>
+		</form>
+	</div>
+	
 	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
 	<div id="posts">
 		<?php
-			if ( $post ) // Dangerous '../' bug
+			// Dangerous '../' bug
+			if ( $post )
 			{
 				$content = file($dir . "/" . strip_tags($post) . ".txt");
-				echo "<article class='content' >";	// Start article
-				echo "<span class='date'>" . $content[0] . "</span>";	// Display date with date formatting
-				echo "<h1 class='title'>" . $content[1] . "</h1>";	//	Display Title
+				echo "<article class=\"content\" id=\"" . 0 . "\" >";	// Start article & ID #0
+				echo "<span class=\"date" . 0 . "\">" . $content[0] . "</span>";	// Display date with date formatting
+				echo "<h1 class=\"title" . 0 . "\">" . $content[1] . "</h1>";	//	Display Title
 				for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 				{
 					echo "<p>" . $content[$j] . "</p>";
 				}
-				echo "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
+				echo "</article>";
+				// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
 			}
-			else {	// Loop to load posts' content
+			else {	//	For multiple posts
+				// Loop to load posts' content
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
 					echo "<article class='content' id=\"" . $i . "\" >";	// Start article & ID #
@@ -97,7 +147,8 @@ echo "\" />" ?>
 					{
 						echo "<p>" . $content[$j] . "</p>";
 					}
-					echo "</article>";	// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
+					echo "</article>";
+					// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
 				}
 				echo "</div> <div id='nav'>";	//	Only Displays if not individual post
 				if ( $page > 0 )	//	Only display if previous page exists

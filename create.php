@@ -125,11 +125,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 </head>
 <body>
-	<div id="posts" onclick="edit('1', '2', '3', 'a', 'b', 'c', 'submit1')">
-		<div id="1" class="original"><?php echo "Date & Time"; ?></div>
-		<div id="2" class="original"><?php echo "File Name"; ?></div>
+	<article id="0" onclick="edit('1', '2', '3', 'a', 'b', 'c', 'submit1')">
+		<span class="date" id="1"><?php echo "Date & Time"; ?></span>
+		<h1 class="title" id="2" class="original"><?php echo "File Name"; ?></h1>
 		<div id="3" class="original"><?php echo "Content goes here"; ?></div>
-	</div>
+	</article>
 	
 	<form name="newPost" action="create.php" method="post" enctype="multipart/form-data">
 		<textarea id="a" class="editable" name="date" rows="1" style="display:none;resize:none;"></textarea><br />
@@ -138,11 +138,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<input id="submit1" class="editable" type="submit" value="Done" style="display:none;resize:resize;" onclick="edit()"/>
 	</form>
 	
-	<div id="posts" onclick="edit('4', '5', '6', 'd', 'e', 'f', 'submit2')">
+	<article id="1" onclick="edit('4', '5', '6', 'd', 'e', 'f', 'submit2')">
 		<div id="4" class="original"><?php echo "2Date & Time"; ?></div>
 		<div id="5" class="original"><?php echo "2File Name"; ?></div>
 		<div id="6" class="original"><?php echo "2Content goes here"; ?></div>
-	</div>
+	</article>
 
 	<form name="newPost" action="create.php" method="post" enctype="multipart/form-data">
 		<textarea id="d" class="editable" name="date" rows="1" style="display:none;resize:none;"></textarea><br />

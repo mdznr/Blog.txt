@@ -1,6 +1,4 @@
 Feb 18 2012
-Inventing on Principle
-<a href="http://worrydream.com/">Bret Victor</a> gives an amazing talk at <a href="http://2012.cusec.net/">CUSEC 2012</a>.
-<iframe src="http://player.vimeo.com/video/36579366?byline=0" width="515" height="314" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-Bio: Bret Victor invents tools that enable people to understand and create. He has designed experimental UI concepts at Apple, interactive data graphics for Al Gore, and musical instruments at Alesis.
+<a href="http://vimeo.com/36579366">Inventing on Principle</a>
+<a href="http://vimeo.com/36579366">Watch Bret Victor give an amazing talk at CUSEC 2012</a>
 Imagine if some of the earlier demos were integrated into a new version of Xcode. Would people who were originally intimidated by code be more likely to try and design iOS and Mac apps? Would non-programmers be more likely to give their app idea a try?

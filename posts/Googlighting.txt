@@ -1,0 +1,4 @@
+Feb 23 2012
+<a href="http://www.youtube.com/watch?v=k4EbCkotKPU">Googlighting</a>
+This is not <a href="http://www.youtube.com/watch?v=TDbrX5U75dk">the first</a> time Microsoft has tried to attack Google in an ad.
+Although most of this ad is garbage, there is one bit that interests me: connecting to Google Docs while offline is not possible, and is a legitimate problem for some users. This basically means that this online software option just isn't for everyone. It's as simple as that. But, I still think a native application running locally, that is not that resource intensive, and pushes updates to the cloud when possible is the best option. Or at least until we can be comfortable with our wireless internet availability and reliability.
