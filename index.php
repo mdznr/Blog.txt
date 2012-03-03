@@ -62,7 +62,16 @@
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
 	$postsPerPage = 5;	//	Will be configurable
-	if ( $_GET["postsPerPage"] ) { $postsPerPage = $_GET["postsPerPage"]; }	//	Overrides with URL arguments
+	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
+		echo "!";
+		$postsPerPage = $_GET["postsPerPage"];
+		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable
+	}
+	print_r($_COOKIE);
+	if ( $_COOKIE["postsPerPage"] ) {	//	If there's a cookie
+		echo "?";
+		$postsPerPage = $_COOKIE["postsPerPage"];	//	sets local variable to the value stored in cookie
+	}
 
 	$page = 0;	//	Page # (Starts with 0)
 	if ( $_GET["n"] ) { $page = $_GET["n"]; }	//	Overrides with URL arguments
