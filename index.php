@@ -110,22 +110,29 @@ echo "\" />" ?>
 <?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
 </head>
 <body>
+	<!--
 	<form name="uploader" action="index.php" method="post" enctype="multipart/form-data" >
 		<input type="file" name="file_upload" onchange="document.uploader.submit()" style="background:#ff0000;position:fixed;top:0;right:0;height:100%;width:256px;opacity:0;" />
 		<input style="visibility:hidden;" name="upload_button" type="submit" value="Upload" />
 	</form>
+	-->
 	
 	<div id="post" style="text-align:right;right:2.618em;top:1.618em;position:absolute;">
-	<a href="#" onclick="newPost.style.display=''"><img src="css/plus.png" alt="New Post" height="15px" width="15px" border="0" /></a><!-- replace img with data:// -->
+	<!--
+	<a href="#" onclick="newPost.style.display=''"><img src="css/plus.png" alt="New Post" height="15px" width="15px" border="0" /></a>
+	-->
+	<!-- replace img with data:// -->
 	</div>
 	
+	<!--
 	<div id="newPost" style="display:none;text-align:center;">
 		<form>
-			<input id="" type="text" placeholder="Date" /><br /><!-- Replace with real date -->
+			<input id="" type="text" placeholder="Date" /><br />
 			<input id="" type="text" placeholder="Title"><br />
 			<textarea id="content"></textarea>
 		</form>
 	</div>
+	-->
 	
 	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
 	<div id="posts">
@@ -165,7 +172,7 @@ echo "\" />" ?>
 					echo $page - 1;
 					echo "\">Newer</a> ";
 				}
-				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists
+				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists 	//	Possible "division" by zero error– default back to default
 				{
 					echo "<a href=\"?n=";
 					echo $page + 1;
