@@ -1,4 +1,5 @@
-<!--
+<?php
+/*
 	Copyright (c) 2012, Matt Zanchelli
 	All rights reserved.
 	
@@ -23,8 +24,7 @@
 	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<?php
+*/
 
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 	include("includes/functions.php");	
@@ -36,6 +36,26 @@
 	
 	$dir = "posts";	//	Directory for storing posts
 	
+	if ( $_GET["p"] ) { $post = $_GET["p"]; }
+
+	$postsPerPage = 5;	//	Will be configurable
+	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
+		$postsPerPage = $_GET["postsPerPage"];
+		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable
+	}
+	if ( $_COOKIE["postsPerPage"] ) {	//	If there's a cookie
+		$postsPerPage = $_COOKIE["postsPerPage"];	//	sets local variable to the value stored in cookie
+	}
+
+	$page = 0;	//	Page # (Starts with 0)
+	if ( $_GET["n"] ) { $page = $_GET["n"]; }	//	Overrides with URL arguments
+
+	$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts
+
+	$posts = glob( $dir . '/*.txt' );	//	Only files that end in .txt in te $dir directory
+	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
+	
+	//	For file uploading
 	if ( isset($_FILES["file_upload"]) ) {
 		$file = $_FILES['file_upload'];	// This is our file variable
 		$name = $file['name'];
@@ -59,27 +79,6 @@
 		elseif($type === "text/php"){ echo "You cannot upload that file here."; }
 	}
 	
-	if ( $_GET["p"] ) { $post = $_GET["p"]; }
-
-	$postsPerPage = 5;	//	Will be configurable
-	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
-		echo "!";
-		$postsPerPage = $_GET["postsPerPage"];
-		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable
-	}
-	print_r($_COOKIE);
-	if ( $_COOKIE["postsPerPage"] ) {	//	If there's a cookie
-		echo "?";
-		$postsPerPage = $_COOKIE["postsPerPage"];	//	sets local variable to the value stored in cookie
-	}
-
-	$page = 0;	//	Page # (Starts with 0)
-	if ( $_GET["n"] ) { $page = $_GET["n"]; }	//	Overrides with URL arguments
-
-	$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts
-
-	$posts = glob( $dir . '/*.txt' );	//	Only files that end in .txt in te $dir directory
-	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
 ?>
 <!doctype html>
 <html lang=en>
