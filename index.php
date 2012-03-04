@@ -2,7 +2,7 @@
 /*
 	Copyright (c) 2012, Matt Zanchelli
 	All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 		* Redistributions of source code must retain the above copyright
@@ -13,7 +13,7 @@
 		* Neither the name of the <organization> nor the
 		  names of its contributors may be used to endorse or promote products
 		  derived from this software without specific prior written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,23 +28,27 @@
 
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 	include("includes/functions.php");	
-	
+
 	$title = "Blog.txt";	//	Title for Blog
-	$keywords = array("Apple", "blog", "Think Different", "Matt Zanchelli");
+	$keywords = array("Matt Zanchelli", "Think Different", "Thinks Different", "Think Differently", "Apple", "blog");
 	$description = "Matt Zanchelli runs a blog.";
 	$author = "Matt Zanchelli";
-	
+
 	$dir = "posts";	//	Directory for storing posts
-	
+
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
-	$postsPerPage = 5;	//	Will be configurable
+	$postsPerPage = 5;	//	Default; will be configurable
 	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
-		$postsPerPage = $_GET["postsPerPage"];
+		$postsPerPage = intval($_GET["postsPerPage"]);
 		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable
 	}
-	if ( $_COOKIE["postsPerPage"] ) {	//	If there's a cookie
-		$postsPerPage = $_COOKIE["postsPerPage"];	//	sets local variable to the value stored in cookie
+	if ( $_COOKIE["postsPerPage"] && !isset($_GET["postsPerPage"]) ) {	//	If there's a cookie
+		$postsPerPage = intval($_COOKIE["postsPerPage"]);	//	sets local variable to the value stored in cookie (must convert to int)
+	}
+	if ( !(is_int($postsPerPage)) ) {	//	If they entered some invalid "number"
+		echo "NOT AN INTEGER!";
+		$postsPerPage = 5;	//	Should just be their default setting
 	}
 
 	$page = 0;	//	Page # (Starts with 0)
@@ -54,7 +58,7 @@
 
 	$posts = glob( $dir . '/*.txt' );	//	Only files that end in .txt in te $dir directory
 	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
-	
+
 	//	For file uploading
 	if ( isset($_FILES["file_upload"]) ) {
 		$file = $_FILES['file_upload'];	// This is our file variable
@@ -64,7 +68,7 @@
 		$type = $file['type'];
 		$max_size = 50 * 1024 * 1024;	// 50 megabytes 
 		$upload_dir = $dir . '/';
-		
+
 		if(($size > 0) && ($type !== "text/php")) {
 			if(!is_dir($upload_dir)){ echo $upload_dir . ' is not a directory'; }
 			else if($size > $max_size){ echo 'The file you are trying to upload is too big.'; }
@@ -78,7 +82,7 @@
 		}
 		elseif($type === "text/php"){ echo "You cannot upload that file here."; }
 	}
-	
+
 ?>
 <!doctype html>
 <html lang=en>
@@ -116,14 +120,14 @@ echo "\" />" ?>
 		<input style="visibility:hidden;" name="upload_button" type="submit" value="Upload" />
 	</form>
 	-->
-	
+
 	<div id="post" style="text-align:right;right:2.618em;top:1.618em;position:absolute;">
 	<!--
 	<a href="#" onclick="newPost.style.display=''"><img src="css/plus.png" alt="New Post" height="15px" width="15px" border="0" /></a>
 	-->
 	<!-- replace img with data:// -->
 	</div>
-	
+
 	<!--
 	<div id="newPost" style="display:none;text-align:center;">
 		<form>
@@ -133,7 +137,7 @@ echo "\" />" ?>
 		</form>
 	</div>
 	-->
-	
+
 	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
 	<div id="posts">
 		<?php
