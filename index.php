@@ -38,6 +38,7 @@
 
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
+	//	Posts Per Pagegi
 	$postsPerPage = 5;	//	Default; will be configurable
 	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
 		$postsPerPage = intval($_GET["postsPerPage"]);
@@ -46,8 +47,8 @@
 	if ( $_COOKIE["postsPerPage"] && !isset($_GET["postsPerPage"]) ) {	//	If there's a cookie
 		$postsPerPage = intval($_COOKIE["postsPerPage"]);	//	sets local variable to the value stored in cookie (must convert to int)
 	}
-	if ( !(is_int($postsPerPage)) ) {	//	If they entered some invalid "number"
-		echo "NOT AN INTEGER!";
+	if ( !(is_int($postsPerPage)) || $postsPerPage == 0 ) {	//	If they entered some invalid "number"
+		// echo "NOT AN INTEGER!";
 		$postsPerPage = 5;	//	Should just be their default setting
 	}
 
