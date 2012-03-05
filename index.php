@@ -160,9 +160,8 @@ echo "\" />" ?>
 			else {	//	For multiple posts
 				// Loop to load posts' content
 				if ( $offset >= count($posts) ) {
-					$page = ceil( count($posts) / $postsPerPage );
-					$offset = calcOffset($postsPerPage, $page) - $postsPerPage;
-					$page--;
+					$page = ceil( count($posts) / $postsPerPage ) - 1;	//	Calculates the last page
+					$offset = calcOffset($postsPerPage, $page);	//	Then calculates the new $offsetgi
 				}
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
