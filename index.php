@@ -27,7 +27,7 @@
 */
 
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
-	include("includes/functions.php");	
+	include("includes/functions.php");
 
 	$title = "Blog.txt";	//	Title for Blog
 	$keywords = array("Matt Zanchelli", "Think Different", "Thinks Different", "Think Differently", "Apple", "blog");
@@ -38,7 +38,7 @@
 
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
-	//	Posts Per Pagegi
+	//	Posts Per Page
 	$postsPerPage = 5;	//	Default; will be configurable
 	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
 		$postsPerPage = intval($_GET["postsPerPage"]);
