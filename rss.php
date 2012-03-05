@@ -31,7 +31,7 @@
 				$content = file($posts[$i]);	//	Loads content first
 				echo "\n<item>\n";
 					echo "<title>" . $content[1] . "</title>\n";
-					echo "<link>" . substr($posts[$i], strlen($dir) + 1, -4) . "</link>\n";
+					echo "<link>" . substr(curPageURL(), 0, -7) . "?p=" . substr($posts[$i], strlen($dir) + 1, -4) . "</link>\n";
 					echo "<pubDate>" . $content[0] . "</pubDate>\n";
 					echo "<description>" . $content[2] . "</description>\n";
 				echo "</item>\n";
