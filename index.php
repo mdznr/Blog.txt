@@ -105,6 +105,8 @@
 
 <title><?php echo $title ?></title>
 
+<link rel="alternate" type="application/rss+xml" title=<?php echo "\"" . $title . "\""; ?> href="/rss.php">
+
 <?php echo "<meta name=\"keywords\" content=\"";
 for ($i=0;$i<sizeof($keywords);$i++) {
 	echo $keywords[$i] . ", ";	// echos each keyword with a comma following it
