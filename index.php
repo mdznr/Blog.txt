@@ -28,13 +28,7 @@
 
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 	include("includes/functions.php");
-
-	$title = "Blog.txt";	//	Title for Blog
-	$keywords = array("Matt Zanchelli", "Think Different", "Thinks Different", "Think Differently", "Apple", "blog");
-	$description = "Matt Zanchelli runs a blog.";
-	$author = "Matt Zanchelli";
-
-	$dir = "posts";	//	Directory for storing posts
+	include("config.php");
 
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
