@@ -49,7 +49,12 @@
 	$page = 0;	//	Page # (Starts with 0)
 	if ( $_GET["n"] ) { $page = $_GET["n"]; }	//	Overrides with URL arguments
 
-	$offset = $postsPerPage * $page;	//	Calculates the offset for loading posts
+	function calcOffset($postsPerPage, $page) {	//	Calculates the offset for loading posts
+		$offset = $postsPerPage * $page;
+		return $offset;
+	}
+	
+	$offset = calcOffset($postsPerPage, $page);
 
 	$posts = glob( $dir . '/*.txt' );	//	Only files that end in .txt in te $dir directory
 	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
@@ -154,6 +159,11 @@ echo "\" />" ?>
 			}
 			else {	//	For multiple posts
 				// Loop to load posts' content
+				if ( $offset >= count($posts) ) {
+					$page = ceil( count($posts) / $postsPerPage );
+					$offset = calcOffset($postsPerPage, $page) - $postsPerPage;
+					$page--;
+				}
 				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
 					$content = file($posts[$i]);
 					echo "<article class='content' id=\"" . $i . "\" >";	// Start article & ID #
@@ -164,7 +174,10 @@ echo "\" />" ?>
 						echo "<p>" . $content[$j] . "</p>";
 					}
 					echo "</article>";
-					// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
+					// Take [0] and make date span out of it
+					// take [1] and make linked title
+					// take [2] to end and display normally
+					// [2] will post only first paragraph - use for RSS description?
 				}
 				echo "</div> <div id='nav'>";	//	Only Displays if not individual post
 				if ( $page > 0 )	//	Only display if previous page exists
@@ -173,7 +186,8 @@ echo "\" />" ?>
 					echo $page - 1;
 					echo "\">Newer</a> ";
 				}
-				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists 	//	Possible "division" by zero error– default back to default
+				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists 
+				//	Possible "division" by zero error– default back to default
 				{
 					echo "<a href=\"?n=";
 					echo $page + 1;
