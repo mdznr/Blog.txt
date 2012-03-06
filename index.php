@@ -148,8 +148,8 @@ echo "\" />" ?>
 			{
 				$content = file($dir . "/" . strip_tags($post) . ".txt");
 				echo "<article class=\"content\" id=\"" . 0 . "\" >";	// Start article & ID #0
-				echo "<span class=\"date\" . 0 . "\">" . $content[0] . "</span>";	// Display date with date formatting
-				echo "<h1 class=\"title\" . 0 . "\">" . $content[1] . "</h1>";	//	Display Title
+				echo "<span class=\"date\">" . $content[0] . "</span>";	// Display date with date formatting
+				echo "<h1 class=\"title\">" . $content[1] . "</h1>";	//	Display Title
 				for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 				{
 					echo "<p>" . $content[$j] . "</p>";
