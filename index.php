@@ -33,7 +33,6 @@
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
 	//	Posts Per Page
-	$postsPerPage = 5;	//	Default; will be configurable
 	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
 		$postsPerPage = intval($_GET["postsPerPage"]);
 		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable

@@ -32,5 +32,6 @@
 	$author = "Matt Zanchelli";	//	Who writes/maintains this blog?
 	
 	$dir = "posts";	//	Directory for storing posts
+	$postsPerPage = 8;	//	Number of posts per page
 
 ?>
