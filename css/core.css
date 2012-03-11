@@ -153,6 +153,12 @@ tr:first-child {
 	text-align: center;
 }
 
+tr:first-child td:first-child {
+	/* Empty top-right */
+	border-left: 0;
+	border-top: 0;
+}
+
 td {
 	border: 1px solid #bebebe;
 	padding: .618em;
