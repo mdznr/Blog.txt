@@ -149,6 +149,10 @@ table {
 	padding-right: 1em;
 }
 
+tr:first-child {
+	text-align: center;
+}
+
 td {
 	border: 1px solid #bebebe;
 	padding: .618em;
