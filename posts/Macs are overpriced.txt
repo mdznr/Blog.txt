@@ -1,0 +1,27 @@
+Mar 11 2012
+"Macs are overpriced"
+Here's a quick comparison between the MacBook Air I bought for school and the computer my school recommended. Looks like MacBook Air wins in almost every category.
+<table>
+<tr><td></td><td>Lenovo Thinkpad T420</td><td>MacBook Air</td></tr>
+<tr><td>OS</td><td>Windows 7 Professional 64-bit</td><td>OS X (10.7) (Also 64-bit)</td></tr>
+<tr><td>Processor</td><td>2.60 GHz dual core Intel Core i5</td><td>1.8 GHz dual-core Intel Core i7</td></tr>
+<tr><td>RAM</td><td>4 GB</td><td>4 GB</td></tr>
+<tr><td>Screen Size</td><td>14"</td><td>11"</td></tr>
+<tr><td>Hard Drive</td><td>500GB 7200RPM HD</td><td>256GB SSD</td></tr>
+<tr><td>CD Drive</td><td>Yes</td><td>via USB (if ever needed)</td></tr>
+<tr><td>USB Ports</td><td>3</td><td>2</td></tr>
+<tr><td>Other Ports</td><td>Firewire</td><td>Thunderbolt</td></tr>
+<tr><td>Trackpad</td><td>2 crap ones</td><td>1 amazing one</td></tr>
+<tr><td>Bluetooth</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Battery<sup id="1"><a href="#sup1">1</sup></td><td>5 Hours</td><td>5 Hours</td></tr>
+<tr><td>Boot time</td><td>48s</td><td>12s</td></tr>
+<tr><td>Extras</td><td>ethernet cable, fingerprint reader</td><td>backlit keyboard</td></tr>
+<tr><td>Weight</td><td>5.22lbs</td><td>2.38lbs</td></tr>
+<tr><td>Price<sup id="2"><a href="#sup2">2</sup></td><td>$1,574</td><td>$1,449</td></tr>
+</table>
+<div class="footnotes">
+<ol>
+<li id="sup1"><a href="#1" class="backLink" title="Return">According to Lenovo website. Students say otherwise.</a></li>
+<li id="sup2"><a href="#2" class="backLink" title="Return">Both prices include student discounts. MacBook Air does include a free printer and $100 iTunes gift card (not factored into price).</a></li>
+</ol>
+</div>
