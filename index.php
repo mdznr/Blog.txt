@@ -113,6 +113,7 @@ echo "\" />" ?>
 
 <?php echo "<meta name=\"description\" content=\"" . $description . "\" />" ?>
 <?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
+<meta name="viewport" content="width=device-width" />	<!-- Especially helpful for mobile devices -->
 </head>
 <body>
 	<!--

@@ -1,0 +1,4 @@
+Mar 13 2012
+Blog.txt is Retina Ready!
+Now if you include retina images, Blog.txt will automatically replace them if necessary. See the <a href="https://github.com/mcilvena/jQuery-Retina-Display-Plugin">Plugin's Github page</a> for more information. The image below will load at a higher resolution, if necessary:
+<img src="img/retinaTest.png" class="retina" width="657px" height="438px" alt="Retina Test" />

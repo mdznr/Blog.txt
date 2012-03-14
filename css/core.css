@@ -34,25 +34,26 @@ body {
 }
 
 #posts {
-	width: 657.586px;
+	width: 46.97em;
 	margin: auto;
+	padding: 1.618em;
 	padding-bottom: 2.618em;
 }
 
 h1 {
-	font-size: 22.652px;
+	font-size: 1.618em;
 	line-height: 1.618em;
 }
 
 h2 {
-	font-size: 36.651px;
+	font-size: 2.618em;
 	line-height: 1.618em;
 }
 
 h3 {
-	text-align: center;
-	font-size: 59.301px;
+	font-size: 4.236em;
 	line-height: 1.618em;
+	text-align: center;
 }
 
 .content {
@@ -82,7 +83,7 @@ h3 {
 
 .content {
 	list-style-type: none;
-	margin-top: 14px;
+	margin-top: 1em;
 	display: block;
 }
 
@@ -92,7 +93,7 @@ h3 {
 }
 
 .file {
-	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
+	font: .8571428571em Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
 	padding-top: .618em;
 }
 
@@ -127,7 +128,7 @@ a:visited {
 
 blockquote {
 	color: #515151;
-	text-indent: 0px;
+	text-indent: 0;
 	margin-left: 1em;
 	margin-right: 1em;
 	padding-left: 1em;
@@ -187,4 +188,8 @@ ol li:hover {
 ol li a, ol li a:visited, ol li a:active {
 	color: #000000;
 	text-decoration: none;
+}
+
+img {
+	max-width: 46.97em;
 }
