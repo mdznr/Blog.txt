@@ -1,8 +1,16 @@
 body {
-	font: 12px/1.8em "PT Serif", serif;
-	padding-top: 1.618em;
+	font-size: 12px;
+	margin-top: 1.618em;
 }
 
 p {
 	padding: 0;
+}
+
+blockquote {
+	margin: 0;
+}
+
+article {
+	margin: 20px;
 }

@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 body {
 	color: #000;
 	font: 14px/1.8em "PT Serif", serif;
-	padding-top: 4.236em;
+	margin-top: 4.236em;
 	padding-bottom: 2.618em;
 	-webkit-font-smoothing: antialiased;
 	background: #fffffe url(subtle_texture.png) repeat;
@@ -56,9 +56,8 @@ h3 {
 }
 
 article {
-	padding: 1.618em;
-	margin-top: .618em;
-	margin-bottom: 1em;
+	margin: 1.618em;
+	margin-bottom: .618em;
 }
 
 .title a, .title a:visited, h3 a, h3 a:visited {
