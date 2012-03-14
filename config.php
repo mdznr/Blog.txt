@@ -33,5 +33,7 @@
 	
 	$dir = "posts";	//	Directory for storing posts
 	$postsPerPage = 8;	//	Number of posts per page
+	
+	$retinaReady = TRUE;	//	If you support @2x images on your blog
 
 ?>

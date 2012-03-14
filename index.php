@@ -196,4 +196,14 @@ echo "\" />" ?>
 	</div>
 	<script> $("pre.php").snippet("php",{style:"bright",transparent:true,showNum:true}); $("pre.html").snippet("html",{style:"bright",transparent:true,showNum:true}); </script>
 </body>
+<?php
+	if ($retinaReady) {
+		echo "<script src=\"js/jquery.retina.js\" type=\"text/javascript\"></script>";
+		echo "<script type=\"text/javascript\">";
+			echo "$(document).ready( function() {";
+				echo "$('img').retina();";
+			echo "});";
+		echo "</script>";
+	}
+?>
 </html>

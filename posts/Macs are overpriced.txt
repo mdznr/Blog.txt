@@ -19,9 +19,7 @@ Here's a quick comparison between the MacBook Air I bought for school and the co
 <tr><td>Weight</td><td>5.22lbs</td><td>2.38lbs</td></tr>
 <tr><td>Price<sup id="2"><a href="#sup2">2</sup></td><td>$1,574</td><td>$1,449</td></tr>
 </table>
-<div class="footnotes">
-<ol>
+<ol class="footnotes">
 <li id="sup1"><a href="#1" class="backLink" title="Return">According to Lenovo website. Students say otherwise.</a></li>
 <li id="sup2"><a href="#2" class="backLink" title="Return">Both prices include student discounts. MacBook Air does include a free printer and $100 iTunes gift card (not factored into price).</a></li>
 </ol>
-</div>

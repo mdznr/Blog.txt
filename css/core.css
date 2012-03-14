@@ -147,6 +147,7 @@ table {
 	margin-right: 1em;
 	padding-left: 1em;
 	padding-right: 1em;
+	margin: auto; /* Centered? */
 }
 
 tr:first-child {
@@ -179,9 +180,11 @@ ol {
 
 ol li:hover {
 	background: none;
+	text-decoration: underline;
+	/* This should be the opposite (doesn't match the rest of the site) */
 }
 
-ol li a {
+ol li a, ol li a:visited, ol li a:active {
 	color: #000000;
 	text-decoration: none;
 }
