@@ -113,8 +113,9 @@ echo "\" />" ?>
 
 <?php echo "<meta name=\"description\" content=\"" . $description . "\" />" ?>
 <?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
-<meta name="viewport" content="width=device-width; initial-scale=1.0" />	<!-- Especially helpful for mobile devices -->
+<meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1; maximum-scale=1; user-scalable=0" />	<!-- Especially helpful for mobile devices -->
 <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 480px)" href="css/mobile.css" />	<!-- Small adjustments for iPhone -->
+<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px) and (orientation:landscape)" href="css/landscape.css" /> <!-- Adjustments for landscape orientation -->
 </head>
 <body>
 	<!--
