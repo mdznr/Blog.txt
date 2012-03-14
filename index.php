@@ -113,7 +113,8 @@ echo "\" />" ?>
 
 <?php echo "<meta name=\"description\" content=\"" . $description . "\" />" ?>
 <?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
-<meta name="viewport" content="width=device-width" />	<!-- Especially helpful for mobile devices -->
+<meta name="viewport" content="width=device-width; initial-scale=1.0" />	<!-- Especially helpful for mobile devices -->
+<link rel="stylesheet" type="text/css" media="screen and (max-device-width: 480px)" href="css/mobile.css" />	<!-- Small adjustments for iPhone -->
 </head>
 <body>
 	<!--
@@ -121,14 +122,12 @@ echo "\" />" ?>
 		<input type="file" name="file_upload" onchange="document.uploader.submit()" style="background:#ff0000;position:fixed;top:0;right:0;height:100%;width:256px;opacity:0;" />
 		<input style="visibility:hidden;" name="upload_button" type="submit" value="Upload" />
 	</form>
-	-->
-
+	
 	<div id="post" style="text-align:right;right:2.618em;top:1.618em;position:absolute;">
-	<!--
 	<a href="#" onclick="newPost.style.display=''"><img src="css/plus.png" alt="New Post" height="15px" width="15px" border="0" /></a>
+	</div>
 	-->
 	<!-- replace img with data:// -->
-	</div>
 
 	<!--
 	<div id="newPost" style="display:none;text-align:center;">

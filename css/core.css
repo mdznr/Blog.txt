@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 body {
 	color: #000;
 	font: 14px/1.8em "PT Serif", serif;
-	padding-top: 59.301px;
+	padding-top: 4.236em;
 	padding-bottom: 2.618em;
 	-webkit-font-smoothing: antialiased;
 	background: #fffffe url(subtle_texture.png) repeat;
@@ -35,9 +35,8 @@ body {
 
 #posts {
 	width: 46.97em;
+	max-width: 100%;
 	margin: auto;
-	padding: 1.618em;
-	padding-bottom: 2.618em;
 }
 
 h1 {
@@ -56,9 +55,10 @@ h3 {
 	text-align: center;
 }
 
-.content {
-	padding-top: 1.618em;
+article {
+	padding: 1.618em;
 	margin-top: .618em;
+	margin-bottom: 1em;
 }
 
 .title a, .title a:visited, h3 a, h3 a:visited {
@@ -81,12 +81,6 @@ h3 {
 	text-decoration: underline;
 }
 
-.content {
-	list-style-type: none;
-	margin-top: 1em;
-	display: block;
-}
-
 #nav {
 	text-align: center;
 	word-spacing: 1em;
@@ -98,19 +92,19 @@ h3 {
 }
 
 p {
-	text-indent: 0px;
+	text-indent: 0;
 	margin-top: .618em;
 	padding-left: 1em;
 	padding-right: 1em;
 }
 
 pre {
-	font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
+	font: .8571428571em Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
 }
 
 pre p {
 	margin: 0;
-	text-indent: 0px;
+	text-indent: 0;
 }
 
 a {
@@ -134,11 +128,7 @@ blockquote {
 	padding-left: 1em;
 	padding-right: 1em;
 	border-left: 1px solid #bebebe;
-	border-right: 0px solid #bebebe;
-}
-
-article {
-	margin-bottom: 1em;
+	border-right: 0 solid #bebebe;
 }
 
 table {
@@ -190,6 +180,11 @@ ol li a, ol li a:visited, ol li a:active {
 	text-decoration: none;
 }
 
-img {
-	max-width: 46.97em;
+a img {
+	border: 0;
 }
+
+img {
+	max-width: 100%;
+}
+
