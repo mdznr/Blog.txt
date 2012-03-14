@@ -24,6 +24,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 body {
 	color: #000;
 	font: 14px/1.8em "PT Serif", serif;
@@ -185,5 +186,22 @@ a img {
 
 img {
 	max-width: 100%;
+}
+
+/* Mobile */
+@media only screen and (max-device-width: 480px) {
+	body { font-size: 12px; margin-top: 1.618em; }
+	p { padding: 0; }
+	blockquote { margin: 0; }
+	article { margin: 20px; }
+	h3 { font-size: 2.618em; }
+}
+
+/* Landscape */
+@media only screen and (max-device-width: 480px) and (orientation:landscape) {
+	body { font-size: 7px; }
+	#posts { width: 100%; }
+	table, #nav { font-size: 1.618em; }
+	h3 { font-size: 4.236em; }
 }
 
