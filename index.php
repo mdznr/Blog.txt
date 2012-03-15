@@ -87,15 +87,13 @@
 <html lang=en>
 <head>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css" />
+<link rel="stylesheet" type="text/css" href="css/core.css" /> <!-- Regular stylesheet -->
+
 <?php
-	if ( $_GET["gruber"] ) { ?>
-		<link rel="stylesheet" type="text/css" href="css/gruber.css" /> <?php 	// Gruber stylesheet
-	}
-	else { ?>
-		<link rel="stylesheet" type="text/css" href="css/core.css" /> <?php 	// Regular stylesheet
+	if ( $_GET["style"] ) {
+		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/" . $_GET["style"] . ".css\" />";
 	}
 ?>
-<link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.snippet.min.js"></script>

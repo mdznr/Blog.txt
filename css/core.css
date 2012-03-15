@@ -25,9 +25,16 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Serif'), local('PTSerif-Regular'), url('http://themes.googleusercontent.com/static/fonts/ptserif/v4/sDRi4fY9bOiJUbgq53yZCXYhjbSpvc47ee6xR_80Hnw.woff') format('woff');
+}
+
 body {
 	color: #000;
-	font: 14px/1.8em "PT Serif", serif;
+	font: 14px/1.8em "PT Serif", Georgia, "Times New Roman", Times, serif;
 	margin-top: 4.236em;
 	padding-bottom: 2.618em;
 	-webkit-font-smoothing: antialiased;

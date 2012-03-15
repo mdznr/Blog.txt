@@ -46,9 +46,6 @@ body {
 .content {
 	padding-top: 1.618em;
 	margin-top: .618em;
-}
-
-.content {
 	list-style-type: none;
 	margin-top: 14px;
 	display: block;
@@ -72,9 +69,7 @@ p {
 h1 {
 	font-family: "Gill Sans", "Gill Sans Std", "Gill Sans MT", Georgia, serif;
 	font-size: 1.55em;
-	/
-
-* was 1.46em for Georgia */
+	/* was 1.46em for Georgia */
 	line-height: 1.5em;
 	text-align: left;
 	font-weight: normal;
@@ -84,9 +79,7 @@ h1 {
 h2 {
 	font-family: "Gill Sans", "Gill Sans Std", "Gill Sans MT", Verdana, "Bitstream Vera Sans", sans-serif;
 	font-size: 1.1em;
-	/
-
-* 1 */
+	/* 1 */
 	text-align: left;
 	font-weight: normal;
 	line-height: 1.8em;
@@ -135,7 +128,7 @@ a {
 
 a:link {
 	text-decoration: none;
-	color: #ddd;
+	color: #DDD;
 	border-color: #888;
 	border-width: 0 0 1px 0;
 	border-style: none none solid none;
@@ -164,6 +157,7 @@ a em {
 }
 
 blockquote {
+	color: #EEE;
 	font-size: 1em;
 	margin: 2em 2em 2em 1em;
 	padding: 0 .75em 0 1.25em;
@@ -185,4 +179,9 @@ cite {
 
 article {
 	margin-bottom: 1em;
+}
+
+.date, .date a, .date a:visited, .date a:hover, .date a:active {
+	color: #AAA;
+	text-decoration: none;
 }
