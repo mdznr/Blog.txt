@@ -34,6 +34,7 @@
 	$dir = "posts";	//	Directory for storing posts
 	$postsPerPage = 8;	//	Number of posts per page
 	
+	$dateFormat = (string) "M j Y";	//	Format you want for posts; http://www.php.net/manual/en/function.date.php
 	$retinaReady = TRUE;	//	If you support @2x images on your blog
 
 ?>
