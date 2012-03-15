@@ -26,38 +26,12 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-function checkPostDate($a)
-{
-	include("config.php");
-	$file = file($a);
-	if ( !strtotime($file[0]) ) {
-		$old_content = file_get_contents($a);
-		unlink($a);
-		$date = "";
-		if ( filemtime($a) ) {
-			$date = date($dateFormat, filemtime($a));	//	The date based on last modification
-		} elseif ( filectime($a) ) {
-			$date = date($dateFormat, filectime($a));	//	The date based on time of creation?	
-		} else {
-			$date = date($dateFormat);	//	Today's date if there is no filemtime
-		}
-		$open = fopen($a, w);
-		fwrite($open, $date . "\n" . $old_content);
-		fclose($open);
-	}
-}
-
 function recentPost($a, $b)	//	Reads post date from first line of .txt document
 {
-	checkPostDate($a);
-	checkPostDate($b);
-	
 	$filea = file($a);
 	$fileb = file($b);
-	
 	$timea = strtotime($filea[0]);
 	$timeb = strtotime($fileb[0]);
-	
 	return $timea < $timeb;	// Returns true if post a is older
 }
 

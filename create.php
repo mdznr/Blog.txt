@@ -44,11 +44,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		if ( file_exists( $full ) ) {	//	Overwrites existing file
 			$existing = fopen( $full, w );
 			fwrite ( $existing, $date . "\n" . substr($filename, 0, -4) . "\n" . $content );
-			fclose($existing);
 		} else {
 			$new = fopen( $full, w );	//	Or creates a new file
 			fwrite( $new,  $date . "\n" . substr($filename, 0, -4) . "\n" . $content );
-			fclose($new);
 		}
 	}
 ?>
