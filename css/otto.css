@@ -1,0 +1,191 @@
+/*
+Copyright (c) 2012, Matt Zanchelli
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+	* Redistributions of source code must retain the above copyright
+	  notice, this list of conditions and the following disclaimer.
+	* Redistributions in binary form must reproduce the above copyright
+	  notice, this list of conditions and the following disclaimer in the
+	  documentation and/or other materials provided with the distribution.
+	* Neither the name of the <organization> nor the
+	  names of its contributors may be used to endorse or promote products
+	  derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+/* Theme based off of Mark Otto's theme */
+
+/*
+Theme Name: Theme
+Theme URI: http://markdotto.com/
+Description: The default theme for MDO.com, last updated Sun Feb 26 21:24:31 PST 2012
+Author: @mdo
+Version: v2.1
+*/
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+}
+
+body {
+	color: #454441;
+	font: 16px/28px "Open Sans", Helvetica, Arial, sans-serif;
+	margin-top: 0;
+	padding: 0;
+	padding-top: 59.301px;
+	padding-bottom: 2.618em;
+	-webkit-font-smoothing: antialiased;
+	background: #fff;
+}
+
+a {
+	color: #4bb14b;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #2d692d;
+	text-decoration: underline;
+}
+
+h1, .title, .title a, .title a:active, .title a:visited {
+	color: #4bb14b;
+	margin: 0 0 10px;
+	font-size: 32px;
+	line-height: 40.32px;
+}
+
+.title a:hover {
+	color: #2d692d;
+}
+
+.title {
+	margin-bottom: 1.618em;
+}
+
+blockquote {
+	margin: 0;
+	background-color: #f5f5f5;
+	padding: 20px 30px;
+	margin-bottom: 14px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+blockquote p {
+	margin-bottom: 0;
+	color: #999999;
+	text-indent: -0.4em;
+}
+
+blockquote p:before {
+	content: '\201C';
+}
+
+blockquote p:after {
+	content: '\201D';
+}
+
+img {
+	display: block;
+	margin: 0 0 20px;
+}
+
+code, pre {
+	padding: 0 3px 2px;
+	font-family: Menlo, Monaco, "Courier New", monospace;
+	font-size: 15px;
+	color: #333333;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+code {
+	padding: 2px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+
+pre {
+	display: block;
+	padding: 13.5px;
+	margin: 0 0 14px;
+	font-size: 14px;
+	line-height: 28px;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	white-space: pre;
+	white-space: pre-wrap;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+pre code {
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+	border: 0;
+}
+
+.date, .date a, .date a:visited, .date a:active{
+	color: #ccc;
+}
+
+.date a:hover {
+	color: #ccc;
+	text-decoration: underline;
+}
+
+#nav a {
+	font-weight: bold;
+	line-height: 40px;
+	color: #4bb14b;
+}
+
+#nav a:hover {
+	color: #3c8d3c;
+	text-decoration: none;
+}
+
+article {
+	margin-bottom: 6.854em;
+}
+
+p {
+	padding: 0;
+	margin-bottom: .618em;
+}
