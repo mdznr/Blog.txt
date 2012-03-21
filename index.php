@@ -36,8 +36,7 @@
 	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
 		$postsPerPage = intval($_GET["postsPerPage"]);
 		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable
-	}
-	if ( $_COOKIE["postsPerPage"] && !isset($_GET["postsPerPage"]) ) {	//	If there's a cookie
+	} elseif ( $_COOKIE["postsPerPage"] ) {	//	If there's a cookie
 		$postsPerPage = intval($_COOKIE["postsPerPage"]);	//	sets local variable to the value stored in cookie (must convert to int)
 	}
 	if ( !(is_int($postsPerPage)) || $postsPerPage == 0 ) {	//	If they entered some invalid "number"
@@ -90,8 +89,17 @@
 <link rel="stylesheet" type="text/css" href="css/core.css" /> <!-- Regular stylesheet -->
 
 <?php
-	if ( $_GET["style"] ) {
-		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/" . $_GET["style"] . ".css\" />";
+	//	For custom CSS Styling
+	if ( $_COOKIE["style"] ) {			//	If there's already a cookie
+		$style = $_COOKIE["style"];		//	Retrieve that cookie
+	}
+	if ( $_GET["style"] ) {				//	Or if found in URL
+		$style = $_GET["style"];		//	Set variable equal
+		setcookie("style", $style);		//	Set cookie
+	}
+	
+	if ( isset($style) ) {	//	If there's a style set, link it!
+		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/" . $style . ".css\" />";
 	}
 ?>
 
@@ -137,6 +145,20 @@ echo "\" />" ?>
 	-->
 
 	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
+	<?php
+	/*
+	bool signedIn = true;	//	Just for testing
+	//	For displaying new post fields
+	if ( signedIn ) {
+		echo "<div id=\"newPost\">";
+			echo "<form id=\"newPost\">";
+				//	inputs
+			echo "</form>";
+		echo "</div>";
+	}
+	*/
+	
+	?>
 	<div id="posts">
 		<?php
 			// Dangerous '../' bug
@@ -153,7 +175,7 @@ echo "\" />" ?>
 				echo "</article>";
 				// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
 			}
-			else {	//	For multiple posts
+			elseif ( count($posts) != 0 ) {	//	For multiple posts
 				// Loop to load posts' content
 				if ( $offset >= count($posts) ) {
 					$page = ceil( count($posts) / $postsPerPage ) - 1;	//	Calculates the last page

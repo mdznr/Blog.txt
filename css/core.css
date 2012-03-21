@@ -65,7 +65,7 @@ h3 {
 
 article {
 	margin: 1.618em;
-	margin-bottom: .618em;
+	margin-bottom: 4.236em;
 }
 
 .title a, .title a:visited, h3 a, h3 a:visited {
@@ -91,6 +91,7 @@ article {
 #nav {
 	text-align: center;
 	word-spacing: 1em;
+	margin: .618em;
 }
 
 .file {
@@ -100,7 +101,7 @@ article {
 
 p {
 	text-indent: 0;
-	margin-top: .618em;
+	margin-top: 1.618em;
 	padding-left: 1em;
 	padding-right: 1em;
 }
