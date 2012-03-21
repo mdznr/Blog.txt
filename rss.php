@@ -41,9 +41,9 @@
 		
 		<title> <?php echo $title; ?> </title>
 		<description> <?php echo $description; ?> </description>
-		<link></link>	<!-- Link to blog -->
-		<lastBuildDate><?php $content = file($posts[$i]); echo $content[0]; ?></lastBuildDate>	<!-- Errr... -->
-		<pubDate> <!-- Imported ONCE using Install.php --> </pubDate>	<!-- Add later -->
+		<link></link>	<!-- Link to blog (to be automatic) -->
+		<lastBuildDate> <?php $content = file($posts[1]); echo $content[0]; ?> </lastBuildDate>	<!-- Errr... -->
+		<pubDate> <?php $content = file($posts[count($posts)]); echo $content[0]; ?> </pubDate>	<!-- Will be imported ONCE using Install.php -->
 		<language>en</language>
 		
 		<?php //	Loads all "items" aka posts
@@ -53,7 +53,7 @@
 				$content = file($posts[$i]);	//	Loads content first
 				echo "\n<item>\n";
 					echo "<title>" . $content[1] . "</title>\n";
-					echo "<link>" . substr(curPageURL(), 0, -7) . "?p=" . substr($posts[$i], strlen($dir) + 1, -4) . "</link>\n";
+					echo "<link>" . substr(curPageURL(), 0, -7) . "?p=" . str_replace(" ", "%20", substr($posts[$i], strlen($dir) + 1, -4)) . "</link>\n";
 					echo "<pubDate>" . $content[0] . "</pubDate>\n";
 					echo "<description>" . $content[2] . "</description>\n";
 				echo "</item>\n";
