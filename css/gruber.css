@@ -62,14 +62,13 @@ body {
 }
 
 p {
-	margin: 0 0 1.6em 0;
 	padding: 0;
+	margin: 0 0 1.618em 1.618em;
 }
 
 h1 {
 	font-family: "Gill Sans", "Gill Sans Std", "Gill Sans MT", Georgia, serif;
 	font-size: 1.55em;
-	/* was 1.46em for Georgia */
 	line-height: 1.5em;
 	text-align: left;
 	font-weight: normal;
@@ -95,9 +94,10 @@ h3 {
 	font-weight: normal;
 	line-height: 1.8em;
 	letter-spacing: .2em;
-	margin-bottom: 1.4em;
 	margin-top: 3em;
 	text-transform: uppercase;
+	color: #aaa;
+	text-decoration: underline;
 }
 
 pre {
@@ -117,7 +117,8 @@ pre p {
 	text-indent: 0px;
 }
 
-title a {
+.title a, .title a:visited, h3 a, h3 a:visited {
+	color: #aaa;
 	text-decoration: none;
 }
 
@@ -182,6 +183,6 @@ article {
 }
 
 .date, .date a, .date a:visited, .date a:hover, .date a:active {
-	color: #AAA;
+	color: #aaa;
 	text-decoration: none;
 }
