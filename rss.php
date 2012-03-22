@@ -42,13 +42,15 @@
 		<title> <?php echo $title; ?> </title>
 		<description> <?php echo $description; ?> </description>
 		<link></link>	<!-- Link to blog (to be automatic) -->
-		<lastBuildDate> <?php $content = file($posts[1]); echo $content[0]; ?> </lastBuildDate>	<!-- Errr... -->
+		<?php if (count($posts)): ?>
+		<lastBuildDate> <?php $content = file($posts[0]); echo $content[0]; ?> </lastBuildDate>	<!-- Errr... -->
+		<?php endif; ?>
 		<pubDate> <?php $content = file($posts[count($posts)]); echo $content[0]; ?> </pubDate>	<!-- Will be imported ONCE using Install.php -->
 		<language>en</language>
 		
 		<?php //	Loads all "items" aka posts
 			//	limit to ensure if not enough posts, it doesn't go out of bounds
-			for ( $i=0; $i<5 /* Standard maximum for RSS Feeds, right? */ && /* Post Exists */ true; $i++ )
+			for ( $i=0; $i<min(count($posts), 5) /* Standard maximum for RSS Feeds, right? */ && /* Post Exists */ true; $i++ )
 			{
 				$content = file($posts[$i]);	//	Loads content first
 				echo "\n<item>\n";
