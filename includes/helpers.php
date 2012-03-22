@@ -26,19 +26,16 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-	$title = "Blog.txt";	//	Title for Blog
-	$keywords = array("Blog.txt", "Blogging Software", "Open Source", "PHP");	//	Keywords
-	$description = "Matt Zanchelli makes blogging software.";	//	Description
-	$author = "Matt Zanchelli";	//	Who writes/maintains this blog?
-	
-	$dir = "posts";	//	Directory for storing posts
-	$postsPerPage = 8;	//	Number of posts per page
-	$style = "";	//	Default styling
-	
-	$dateFormat = "M j Y";	//	Preferred date format; http://php.net/manual/en/function.date.php
-	$retinaReady = TRUE;	//	If you support @2x images on your blog
+// functions related to the emitting of html
+require_once('functions.php');
 
-	// useful for debugging problem areas
-	ini_set('display_errors',1); 
-	error_reporting(E_ALL);
-?>
+function stylesheetLink($key="style")
+{
+	//	For custom CSS Styling
+	$style = settingFromCookie($key);
+	if ( $style ) {	//	If there's a style set, link it!
+		return '<link rel="stylesheet" type="text/css" href="css/' . $style . '.css" />';
+	}
+	return "";
+}
+
