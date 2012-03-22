@@ -45,7 +45,7 @@
 		<?php if (count($posts)): ?>
 		<lastBuildDate> <?php $content = file($posts[0]); echo $content[0]; ?> </lastBuildDate>	<!-- Errr... -->
 		<?php endif; ?>
-		<pubDate> <?php $content = file($posts[count($posts)]); echo $content[0]; ?> </pubDate>	<!-- Will be imported ONCE using Install.php -->
+		<pubDate> <?php $content = file($posts[count($posts) - 1]); echo $content[0]; ?> </pubDate>	<!-- Will be imported ONCE using Install.php -->
 		<language>en</language>
 		
 		<?php //	Loads all "items" aka posts
