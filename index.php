@@ -28,57 +28,20 @@
 
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
 	include("includes/functions.php");
+	include("includes/posts.php");
+	include("includes/helpers.php");
 	include("config.php");
 
 	if ( $_GET["p"] ) { $post = $_GET["p"]; }
 
 	//	Posts Per Page
-	if ( isset($_GET["postsPerPage"]) ) {	//	Overrides with URL arguments
-		$postsPerPage = intval($_GET["postsPerPage"]);
-		setcookie("postsPerPage", $postsPerPage);	//	Sets a cookie with the variable
-	} elseif ( $_COOKIE["postsPerPage"] ) {	//	If there's a cookie
-		$postsPerPage = intval($_COOKIE["postsPerPage"]);	//	sets local variable to the value stored in cookie (must convert to int)
-	}
-	if ( !(is_int($postsPerPage)) || $postsPerPage == 0 ) {	//	If they entered some invalid "number"
-		// echo "NOT AN INTEGER!";
-		$postsPerPage = 5;	//	Should just be their default setting
-	}
-
-	$page = 0;	//	Page # (Starts with 0)
-	if ( $_GET["n"] ) { $page = $_GET["n"]; }	//	Overrides with URL arguments
-
-	function calcOffset($postsPerPage, $page) {	//	Calculates the offset for loading posts
-		$offset = $postsPerPage * $page;
-		return $offset;
-	}
-	
-	$offset = calcOffset($postsPerPage, $page);
-
-	$posts = glob( $dir . '/*.txt' );	//	Only files that end in .txt in te $dir directory
-	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
+	$postsPerPage = updateNumPostsPerPage($_GET["postsPerPage"]);
+	$page = getPageNumber($_GET["n"]); // starts at 0
+	$posts = getPosts($dir);
 
 	//	For file uploading
 	if ( isset($_FILES["file_upload"]) ) {
-		$file = $_FILES['file_upload'];	// This is our file variable
-		$name = $file['name'];
-		$tmp = $file['tmp_name'];
-		$size = $file['size'];
-		$type = $file['type'];
-		$max_size = 50 * 1024 * 1024;	// 50 megabytes 
-		$upload_dir = $dir . '/';
-
-		if(($size > 0) && ($type !== "text/php")) {
-			if(!is_dir($upload_dir)){ echo $upload_dir . ' is not a directory'; }
-			else if($size > $max_size){ echo 'The file you are trying to upload is too big.'; }
-			else{
-				if(!is_uploaded_file($tmp)){ echo 'Could not upload your file at this time, please try again'; }	
-				else{
-					if(!move_uploaded_file($tmp, $upload_dir . $name)){ echo 'Could not move the uploaded file.'; }
-					else{ $message = $name . " was successfully uploaded!"; }	
-				}
-			}
-		}
-		elseif($type === "text/php"){ echo "You cannot upload that file here."; }
+		addPost($dir, $_FILES["file_upload"]);
 	}
 
 ?>
@@ -88,20 +51,7 @@
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css" />
 <link rel="stylesheet" type="text/css" href="css/core.css" /> <!-- Regular stylesheet -->
 
-<?php
-	//	For custom CSS Styling
-	if ( $_COOKIE["style"] ) {			//	If there's already a cookie
-		$style = $_COOKIE["style"];		//	Retrieve that cookie
-	}
-	if ( $_GET["style"] ) {				//	Or if found in URL
-		$style = $_GET["style"];		//	Set variable equal
-		setcookie("style", $style);		//	Set cookie
-	}
-	
-	if ( isset($style) ) {	//	If there's a style set, link it!
-		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/" . $style . ".css\" />";
-	}
-?>
+<?php echo stylesheetLink(); ?>
 
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.snippet.min.js"></script>
@@ -111,14 +61,10 @@
 
 <link rel="alternate" type="application/rss+xml" title=<?php echo "\"" . $title . "\""; ?> href="/rss.php">
 
-<?php echo "<meta name=\"keywords\" content=\"";
-for ($i=0;$i<sizeof($keywords);$i++) {
-	echo $keywords[$i] . ", ";	// echos each keyword with a comma following it
-}
-echo "\" />" ?>
+<meta name="keywords" content="<?php echo implode(', ', $keywords); ?>" />
 
-<?php echo "<meta name=\"description\" content=\"" . $description . "\" />" ?>
-<?php echo "<meta name=\"author\" content=\"" . $author . "\" />" ?>
+<meta name="description" content="<?php echo $description; ?>" />
+<meta name="author" content="<?php echo $author; ?>" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1; maximum-scale=1; user-scalable=0" />	<!-- Especially helpful for mobile devices -->
 </head>
 <body>
@@ -144,7 +90,7 @@ echo "\" />" ?>
 	</div>
 	-->
 
-	<h3 class="blogtitle"><?php echo "<a href=\"" . "./" . "\">" . $title . "</a>"; ?></h3>
+	<h3 class="blogtitle"><a href="./"><?php echo $title; ?></a></h3>
 	<?php
 	/*
 	bool signedIn = true;	//	Just for testing
@@ -161,68 +107,67 @@ echo "\" />" ?>
 	?>
 	<div id="posts">
 		<?php
-			// Dangerous '../' bug
-			if ( $post )
-			{
-				$content = file($dir . "/" . realpath(strip_tags($post)) . ".txt");
-				echo "<article class=\"content\" id=\"" . 0 . "\" >";	// Start article & ID #0
-				echo "<span class=\"date\">" . $content[0] . "</span>";	// Display date with date formatting
-				echo "<h1 class=\"title\">" . $content[1] . "</h1>";	//	Display Title
-				for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
-				{
-					echo "<p>" . $content[$j] . "</p>";
-				}
-				echo "</article>";
-				// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
-			}
-			elseif ( count($posts) != 0 ) {	//	For multiple posts
-				// Loop to load posts' content
-				if ( $offset >= count($posts) ) {
-					$page = ceil( count($posts) / $postsPerPage ) - 1;	//	Calculates the last page
-					$offset = calcOffset($postsPerPage, $page);	//	Then calculates the new $offsetgi
-				}
-				for ( $i=$offset; $i<count($posts) && $i<( $postsPerPage + $offset ); $i++ ) {
-					$content = file($posts[$i]);
-					echo "<article class=\"content\" id=\"" . $i . "\" >";	// Start article & ID #
-					echo "<span class=\"date\"><a href=\"?p=" .  urlencode(substr($posts[$i], strlen($dir) + 1, -4)) . "\">" . $content[0] . "</a></span>";	// Display date with date formatting
-					echo "<h1 class=\"title\">" . $content[1] . "</h1>";	//	Display file name after the directory and / to the end, minus 4 for the '.txt' extension
+			if ( hasPost($dir, $post) ):
+				$content = getPost($dir, $post);
+		?>
+				<article class="content" id="0" >
+				<span class="date"><?php echo $content[0]; ?></span>
+				<h1 class="title"><?php echo $content[1]; ?></h1>
+				<?php
 					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
 					{
 						echo "<p>" . $content[$j] . "</p>";
 					}
-					echo "</article>";
+					// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
+				?>
+				</article>
+		<?php
+			elseif ( count($posts) != 0 ):	//	For multiple posts
+				$offset = getPostOffsetByPage($pageNumber, $postsPerPage, count($posts));
+				// Loop to load posts' content
+				$stop = indexOfNextPagePost($offset, $postsPerPage, count($posts));
+				for ( $i=$offset; $i<$stop; $i++ ):
+					$content = file($posts[$i]);
+		?>
+					<article class="content" id="<?php echo $i; // article id ?>">
+						<span class="date">
+							<a href="?p=<?php echo urlencode(getPostIdentifier($posts[$i])); ?>">
+								<?php echo $content[0]; ?>
+							</a>
+						</span>
+						<h1 class="title"><?php echo $content[1]; ?></h1>
+						<?php
+							for ( $j=2; $j<count($content); $j++)
+							{	//	Prints all other lines
+								echo "<p>" . $content[$j] . "</p>";
+							}
+						?>
+					</article>
+				<?php
 					// Take [0] and make date span out of it
 					// take [1] and make linked title
 					// take [2] to end and display normally
 					// [2] will post only first paragraph - use for RSS description?
-				}
-				echo "</div> <div id='nav'>";	//	Only Displays if not individual post
-				if ( $page > 0 )	//	Only display if previous page exists
-				{
-					echo "<a href=\"?n=";
-					echo $page - 1;
-					echo "\">Newer</a> ";
-				}
-				if ( $page < (count($posts) / $postsPerPage) - 1 )	// Only display is next page exists 
-				//	Possible "division" by zero error– default back to default
-				{
-					echo "<a href=\"?n=";
-					echo $page + 1;
-					echo "\">Older</a>";
-				}
-			}
-		?>
+				endfor;
+				?>
+				</div>
+				<div id='nav'>
+				<?php if ( hasNewerPage($page) ): ?>
+					<a href="?n=<?php echo $page - 1; ?>">Newer</a>
+				<?php endif; ?>
+				<?php if ( hasOlderPage($page, $postsPerPage, count($posts))): ?>
+					<a href="?n=<?php echo $page + 1; ?>">Older</a>
+				<?php endif; ?>
+		<?php endif; ?>
 	</div>
 	<script> $("pre.php").snippet("php",{style:"bright",transparent:true,showNum:true}); $("pre.html").snippet("html",{style:"bright",transparent:true,showNum:true}); </script>
 </body>
-<?php
-	if ($retinaReady) {
-		echo "<script src=\"js/jquery.retina.js\" type=\"text/javascript\"></script>";
-		echo "<script type=\"text/javascript\">";
-			echo "$(document).ready( function() {";
-				echo "$('img').retina();";
-			echo "});";
-		echo "</script>";
-	}
-?>
+<?php if ($retinaReady): ?>
+	<script src="js/jquery.retina.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		$('img').retina();
+	});
+	</script>";
+<?php endif; ?>
 </html>
