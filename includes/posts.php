@@ -25,85 +25,82 @@
 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+require_once('config.php');
+require_once('functions.php');
 
 // Functions related to pages -- maybe use a class?
 
-// sets the number of posts per page for the user
-// returns the expected number of posts per page
-function updateNumPostsPerPage($getValue, $cookieKey="postsPerPage")
+function recentPost($a, $b)	//	Reads post date from first line of .txt document
 {
-	if ( isset($getValue) ){
-		setcookie($cookieKey, intval($getValue));
+	checkPostDate($a);
+	checkPostDate($b);
+
+	$filea = file($a);
+	$fileb = file($b);
+
+	$timea = strtotime($filea[0]);
+	$timeb = strtotime($fileb[0]);
+
+	return $timea < $timeb;	// Returns true if post a is older
+}
+
+class Post
+{
+	public static $ROOT = '';
+	public $file = '';
+	public $ext = '';
+	public $date = '';
+	public $title = '';
+	public $body = '';
+	public $body_html = '';
+	public $id = 0; // used by paginator
+	public function __construct($file=null, $ext=".txt")
+	{
+		if ($file)
+		{
+			$realpath = basename(realpath($file), $ext);
+			$this->file = self::$ROOT . '/' . $realpath . $ext;
+		}
+		$this->ext = $ext;
 	}
-	$num = 0;
-	if ( $_COOKIE[$cookieKey] ) {
-		$num = intval($_COOKIE[$cookieKey]);
+
+	// returns true if the given post exists
+	public function exists()
+	{
+		return $this->file && file_exists($this->file);
 	}
-	return $num || 5;
-}
 
-// Returns the page number for posts to load
-function getPageNumber($getValue)
-{
-	return is_numeric($getValue) ? intval($getValue) : 0;
-}
-
-// returns the post index of the first post to get for a given page number
-function getPostOffsetByPage($pageNumber, $postsPerPage, $postCount)
-{
-	$offset = $postsPerPage * $pageNumber;
-	if ( $offset >= $postCount ) {
-		$page = ceil( $postCount / $postsPerPage ) - 1;	//	Calculates the last page
-		$offset = getPostOffsetByPageNumber($postsPerPage, $page);	//	Then calculates the new $offsetgi
+	public function getBasename()
+	{
+		return basename($this->file, $this->ext);
 	}
-	return $offset;
-}
 
-function indexOfNextPagePost($offset, $postsPerPage, $postCount)
-{
-	return min($postCount, $postsPerPage + $offset);
-}
+	public function load()
+	{
+		if (!$this->exists()) return false;
 
-// returns the filename, without any directory or extension
-// used for linking to a particular post
-function getPostIdentifier($filepath)
-{
-	return basename($filepath, ".txt");
-}
+		$lines = file($this->file);
+		$this->date = $lines[0];
+		$this->title = $lines[1];
+		$this->body = array_slice($lines, 2);
+		$this->body_html = '<p>' . implode('</p><p>', $this->body) . '</p>';
 
+		return true;
+	}
 
-function hasNewerPage($page)
-{
-	return $page > 0;
-}
-
-// returns true if the given page has a previou on
-function hasOlderPage($page, $postsPerPage, $postCount)
-{
-	//	Possible "division" by zero error– default back to default
-	return $page < ($postCount / $postsPerPage) - 1;
-}
-
-function getPosts($directory)
-{
-	$posts = glob($directory . "/*.txt");	//	Only files that end in .txt in te $dir directory
-	usort($posts, recentPost);	//	Sorts list of .txt files by their Date (recent first)
-	return $posts;
-}
-
-function getPostPath($directory, $file)
-{
-	return $directory . "/" . realpath(post) . ".txt";
-}
-
-function hasPost($directory, $file)
-{
-	return file_exists(getPostPath($directory, $file));
-}
-
-function getPost($directory, $file)
-{
-	return file(getPostPath($directory, $file));
+	public static function getAll()
+	{
+		$files = glob(self::$ROOT . "/*.txt");	//	Only files that end in .txt in te $dir directory
+		usort($files, 'recentPost');	//	Sorts list of .txt files by their Date (recent first)
+		$posts = array();
+		foreach($files as $file)
+		{
+			$p = new self($file);
+			$p->load();
+			array_push($posts, $p);
+		}
+		return $posts;
+	}
 }
 
 function addPost($directory, $file)
@@ -112,19 +109,23 @@ function addPost($directory, $file)
 	$tmp = $file['tmp_name'];
 	$size = $file['size'];
 	$type = $file['type'];
-	$max_size = 50 * 1024 * 1024;	// 50 megabytes 
+	$max_size = 50 * 1024 * 1024;	// 50 megabytes
 	$upload_dir = $directory . '/';
 
 	if(($size > 0) && ($type !== "text/php")) {
 		if(!is_dir($upload_dir)){ echo $upload_dir . ' is not a directory'; }
 		else if($size > $max_size){ echo 'The file you are trying to upload is too big.'; }
 		else{
-			if(!is_uploaded_file($tmp)){ echo 'Could not upload your file at this time, please try again'; }	
+			if(!is_uploaded_file($tmp)){ echo 'Could not upload your file at this time, please try again'; }
 			else{
 				if(!move_uploaded_file($tmp, $upload_dir . $name)){ echo 'Could not move the uploaded file.'; }
-				else{ $message = $name . " was successfully uploaded!"; }	
+				else{ $message = $name . " was successfully uploaded!"; }
 			}
 		}
 	}
 	elseif($type === "text/php"){ echo "You cannot upload that file here."; }
 }
+
+// assign root to value from config.php
+Post::$ROOT = $dir;
+

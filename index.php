@@ -27,22 +27,26 @@
 */
 
 	// Is it necessary for linking to universal functions if there's only going to be one .php file using them? Hmm...
-	include("includes/functions.php");
-	include("includes/posts.php");
-	include("includes/helpers.php");
-	include("config.php");
-
-	if ( $_GET["p"] ) { $post = $_GET["p"]; }
-
-	//	Posts Per Page
-	$postsPerPage = updateNumPostsPerPage($_GET["postsPerPage"]);
-	$page = getPageNumber($_GET["n"]); // starts at 0
-	$posts = getPosts($dir);
+	require_once("config.php");
+	require_once("includes/functions.php");
+	require_once("includes/posts.php");
+	require_once("includes/paginator.php");
+	require_once("includes/helpers.php");
 
 	//	For file uploading
 	if ( isset($_FILES["file_upload"]) ) {
 		addPost($dir, $_FILES["file_upload"]);
 	}
+
+	// the current post, if this is a permalink
+	$post = new Post(get($_GET, "p"));
+	// all the posts
+	$posts = Post::getAll();
+	$paginator = new Paginator(array(
+		"page" => get($_GET, "n"),
+		"itemsPerPage" => intval(settingFromCookie("postsPerPage", 5)),
+	));
+
 
 ?>
 <!doctype html>
@@ -106,58 +110,32 @@
 	
 	?>
 	<div id="posts">
-		<?php
-			if ( hasPost($dir, $post) ):
-				$content = getPost($dir, $post);
-		?>
-				<article class="content" id="0" >
-				<span class="date"><?php echo $content[0]; ?></span>
-				<h1 class="title"><?php echo $content[1]; ?></h1>
-				<?php
-					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
-					{
-						echo "<p>" . $content[$j] . "</p>";
-					}
-					// Take [0] and make date span out of it, take [1] and make linked title, take [2] to end and display normally. [2] will post only first paragraph - use for RSS description?
-				?>
+		<?php if ( $post->load() ): ?>
+			<article class="content" id="0" >
+				<span class="date"><?php echo $post->date; ?></span>
+				<h1 class="title"><?php echo $post->title; ?></h1>
+				<?php echo $post->body_html ?>
+			</article>
+		<?php elseif ( count($posts) != 0 ):	//	For multiple posts ?>
+			<?php foreach($paginator->itemsForPage($posts) as $post): ?>
+				<article class="content" id="<?php echo $i; // article id ?>">
+					<span class="date">
+						<a href="?p=<?php echo urlencode($post->getBasename()); ?>">
+							<?php echo $post->date; ?>
+						</a>
+					</span>
+					<h1 class="title"><?php echo $post->title; ?></h1>
+					<?php echo $post->body_html; ?>
 				</article>
-		<?php
-			elseif ( count($posts) != 0 ):	//	For multiple posts
-				$offset = getPostOffsetByPage($pageNumber, $postsPerPage, count($posts));
-				// Loop to load posts' content
-				$stop = indexOfNextPagePost($offset, $postsPerPage, count($posts));
-				for ( $i=$offset; $i<$stop; $i++ ):
-					$content = file($posts[$i]);
-		?>
-					<article class="content" id="<?php echo $i; // article id ?>">
-						<span class="date">
-							<a href="?p=<?php echo urlencode(getPostIdentifier($posts[$i])); ?>">
-								<?php echo $content[0]; ?>
-							</a>
-						</span>
-						<h1 class="title"><?php echo $content[1]; ?></h1>
-						<?php
-							for ( $j=2; $j<count($content); $j++)
-							{	//	Prints all other lines
-								echo "<p>" . $content[$j] . "</p>";
-							}
-						?>
-					</article>
-				<?php
-					// Take [0] and make date span out of it
-					// take [1] and make linked title
-					// take [2] to end and display normally
-					// [2] will post only first paragraph - use for RSS description?
-				endfor;
-				?>
-				</div>
-				<div id='nav'>
-				<?php if ( hasNewerPage($page) ): ?>
-					<a href="?n=<?php echo $page - 1; ?>">Newer</a>
-				<?php endif; ?>
-				<?php if ( hasOlderPage($page, $postsPerPage, count($posts))): ?>
-					<a href="?n=<?php echo $page + 1; ?>">Older</a>
-				<?php endif; ?>
+			<?php endforeach; ?>
+			</div>
+			<div id='nav'>
+			<?php if ( $paginator->hasNewerPage() ): ?>
+				<a href="?n=<?php echo $page - 1; ?>">Newer</a>
+			<?php endif; ?>
+			<?php if ( $paginator->hasOlderPage(count($posts)) ): ?>
+				<a href="?n=<?php echo $page + 1; ?>">Older</a>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 	<script> $("pre.php").snippet("php",{style:"bright",transparent:true,showNum:true}); $("pre.html").snippet("html",{style:"bright",transparent:true,showNum:true}); </script>
@@ -168,6 +146,6 @@
 	$(document).ready( function() {
 		$('img').retina();
 	});
-	</script>";
+	</script>
 <?php endif; ?>
 </html>

@@ -27,19 +27,13 @@
 */
 
 // functions related to the emitting of html
+require_once('functions.php');
 
 function stylesheetLink($key="style")
 {
 	//	For custom CSS Styling
-	if ( $_COOKIE[$key] ) {			//	If there's already a cookie
-		$style = $_COOKIE[$key];		//	Retrieve that cookie
-	}
-	if ( $_GET[$key] ) {				//	Or if found in URL
-		$style = $_GET[$key];		//	Set variable equal
-		setcookie($key, $style);		//	Set cookie
-	}
-	
-	if ( isset($style) ) {	//	If there's a style set, link it!
+	$style = settingFromCookie($key);
+	if ( $style ) {	//	If there's a style set, link it!
 		return '<link rel="stylesheet" type="text/css" href="css/' . $style . '.css" />';
 	}
 	return "";

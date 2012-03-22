@@ -38,4 +38,7 @@
 	$dateFormat = "M j Y";	//	Preferred date format; http://php.net/manual/en/function.date.php
 	$retinaReady = TRUE;	//	If you support @2x images on your blog
 
+	// useful for debugging problem areas
+	ini_set('display_errors',1); 
+	error_reporting(E_ALL);
 ?>
