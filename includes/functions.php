@@ -46,20 +46,6 @@ function checkPostDate($a)
 	}
 }
 
-function recentPost($a, $b)	//	Reads post date from first line of .txt document
-{
-	checkPostDate($a);
-	checkPostDate($b);
-
-	$filea = file($a);
-	$fileb = file($b);
-
-	$timea = strtotime($filea[0]);
-	$timeb = strtotime($fileb[0]);
-
-	return $timea < $timeb;	// Returns true if post a is older
-}
-
 function curPageURL()
 {
 	$pageURL = 'http';
@@ -77,6 +63,21 @@ function curPageURL()
 	}
 
 	return $pageURL;
+}
+
+function get($arr, $key, $default=null)
+{
+	return isset($arr[$key]) ? $arr[$key] : $default;
+}
+
+function settingFromCookie($key, $default=null, $source=null)
+{
+	if ( $source == null ) $source = $_GET;
+
+	$value = get($source, $key, $default);
+
+	if ( $value != null ) setcookie($key, $value);
+	return $value;
 }
 
 ?>
