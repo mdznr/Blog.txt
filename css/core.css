@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 body {
 	color: #000;
 	font: 14px/1.8em "PT Serif", Georgia, "Times New Roman", Times, serif;
-	margin-top: 4.236em;
+	padding-top: 4.236em;
 	padding-bottom: 2.618em;
 	-webkit-font-smoothing: antialiased;
 	background: #fffffe url(subtle_texture.png) repeat;
