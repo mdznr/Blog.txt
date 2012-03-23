@@ -177,15 +177,19 @@ ol {
 	padding-right: 1em;
 }
 
-ol li:hover {
+.footnotes li:hover {
 	background: none;
-	text-decoration: underline;
-	/* This should be the opposite (doesn't match the rest of the site) */
 }
 
 ol li a, ol li a:visited, ol li a:active {
-	color: #000000;
+	color: #000;
 	text-decoration: none;
+}
+
+ol li:hover {
+	color: #000;
+	text-transform: none;
+	/* This should be the opposite (doesn't match the rest of the site) */
 }
 
 a img {
