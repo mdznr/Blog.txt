@@ -53,7 +53,7 @@ class Post
 	public $title = '';
 	public $body = '';
 	public $body_html = '';
-	public $id = 0; // used by paginator
+	public $id = 0; // Used by paginator
 	public function __construct($file=null, $ext=".txt")
 	{
 		if ($file)
@@ -64,7 +64,7 @@ class Post
 		$this->ext = $ext;
 	}
 
-	// returns true if the given post exists
+	//	Returns true if the given post exists
 	public function exists()
 	{
 		return $this->file && file_exists($this->file);
@@ -90,7 +90,7 @@ class Post
 
 	public static function getAll()
 	{
-		$files = glob(self::$ROOT . "/*.txt");	//	Only files that end in .txt in te $dir directory
+		$files = glob(self::$ROOT . "/*.txt");	//	Only files that end in .txt in the $dir directory
 		usort($files, 'recentPost');	//	Sorts list of .txt files by their Date (recent first)
 		$posts = array();
 		foreach($files as $file)

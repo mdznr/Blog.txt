@@ -38,15 +38,14 @@
 		addPost($dir, $_FILES["file_upload"]);
 	}
 
-	// the current post, if this is a permalink
+	//	the current post, if this is a permalink
 	$post = new Post(get($_GET, "p"));
-	// all the posts
+	//	all the posts
 	$posts = Post::getAll();
 	$paginator = new Paginator(array(
 		"page" => get($_GET, "n"),
 		"itemsPerPage" => intval(settingFromCookie("postsPerPage", 5)),
 	));
-
 
 ?>
 <!doctype html>
@@ -110,7 +109,7 @@
 	
 	?>
 	<div id="posts">
-		<?php if ( $post->load() ): ?>
+		<?php if ( $post->load() ): //	For a single post ?>
 			<article class="content" id="0" >
 				<span class="date"><?php echo $post->date; ?></span>
 				<h1 class="title"><?php echo $post->title; ?></h1>
@@ -131,10 +130,10 @@
 			</div>
 			<div id='nav'>
 			<?php if ( $paginator->hasNewerPage() ): ?>
-				<a href="?n=<?php echo $page - 1; ?>">Newer</a>
+				<a href="?n=<?php echo $paginator->page - 1; ?>">Newer</a>
 			<?php endif; ?>
 			<?php if ( $paginator->hasOlderPage(count($posts)) ): ?>
-				<a href="?n=<?php echo $page + 1; ?>">Older</a>
+				<a href="?n=<?php echo $paginator->page + 1; ?>">Older</a>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>
@@ -148,4 +147,5 @@
 	});
 	</script>
 <?php endif; ?>
+<?php /* echo "DEBUG: " . urldecode("http://localhost/Dropbox/github/Blog/?n=%3Cbr%20/%3E%3Cb%3ENotice%3C/b%3E:%20%20Undefined%20variable:%20page%20in%20%3Cb%3E/Users/Matt/Dropbox/github/Blog/index.php%3C/b%3E%20on%20line%20%3Cb%3E137%3C/b%3E%3Cbr%20/%3E1"); */ ?>
 </html>
