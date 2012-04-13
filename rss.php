@@ -41,23 +41,28 @@
 		
 		<title> <?php echo $title; ?> </title>
 		<description> <?php echo $description; ?> </description>
-		<link></link>	<!-- Link to blog (to be automatic) -->
+		<link> <?php echo "http://" . $_SERVER['HTTP_HOST']; ?> </link>
 		<?php if (count($posts)): ?>
-		<lastBuildDate> <?php $content = file($posts[0]); echo $content[0]; ?> </lastBuildDate>	<!-- Errr... -->
+		<lastBuildDate> <?php $content = file($posts[0]); echo date( DATE_RFC822, strtotime($content[0]) ); ?> </lastBuildDate>
 		<?php endif; ?>
-		<pubDate> <?php $content = file($posts[count($posts) - 1]); echo $content[0]; ?> </pubDate>	<!-- Will be imported ONCE using Install.php -->
+		<pubDate> <?php $content = file($posts[count($posts) - 1]); echo date( DATE_RFC822, strtotime($content[0]) ); ?> </pubDate>
 		<language>en</language>
 		
 		<?php //	Loads all "items" aka posts
 			//	limit to ensure if not enough posts, it doesn't go out of bounds
-			for ( $i=0; $i<min(count($posts), 5) /* Standard maximum for RSS Feeds, right? */ && /* Post Exists */ true; $i++ )
+			for ( $i=0; $i<min(count($posts), 15); $i++ )
 			{
 				$content = file($posts[$i]);	//	Loads content first
 				echo "\n<item>\n";
 					echo "<title>" . $content[1] . "</title>\n";
 					echo "<link>" . substr(curPageURL(), 0, -7) . "?p=" . urlencode(substr($posts[$i], strlen($dir) + 1, -4)) . "</link>\n";
-					echo "<pubDate>" . $content[0] . "</pubDate>\n";
-					echo "<description>" . $content[2] . "</description>\n";
+					echo "<pubDate>" . date( DATE_RFC822, strtotime($content[0]) ) . "</pubDate>\n";
+					echo "<description>";
+					for ( $j=2; $j<count($content); $j++)	//	Prints all other lines
+					{
+						echo $content[$j];
+					}
+					echo "</description>\n";
 				echo "</item>\n";
 			}
 		?>

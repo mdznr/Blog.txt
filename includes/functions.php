@@ -29,6 +29,9 @@ function checkPostDate($a)
 {
 	include("config.php");
 	$file = file($a);
+	
+	//	Auto-insert date
+	//	If the date is not readable, it assumes it's the post title and puts a date in
 	if ( !strtotime($file[0]) ) {
 		$old_content = file_get_contents($a);
 		unlink($a);
@@ -38,9 +41,9 @@ function checkPostDate($a)
 		} elseif ( filectime($a) ) {
 			$date = date($dateFormat, filectime($a));	//	The date based on time of creation?	
 		} else {
-			$date = date($dateFormat);	//	Today's date if there is no filemtime
+			$date = date($dateFormat);	//	Today's date if there is no filemtime or filectime
 		}
-		$open = fopen($a, w);
+		$open = fopen($a, 'w');
 		fwrite($open, $date . "\n" . $old_content);
 		fclose($open);
 	}
