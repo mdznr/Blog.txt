@@ -217,3 +217,11 @@ img {
 	h3 { font-size: 4.236em; }
 }
 
+/* Retina background */
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    background-image: url(subtle_texture.png);
+    background-size: 300px 300px;
+  }
+}
+
