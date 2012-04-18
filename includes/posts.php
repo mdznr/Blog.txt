@@ -58,7 +58,7 @@ class Post
 	{
 		if ($file)
 		{
-			$realpath = basename(realpath($file), $ext);
+			$realpath = basename($file, $ext);
 			$this->file = self::$ROOT . '/' . $realpath . $ext;
 		}
 		$this->ext = $ext;
@@ -77,7 +77,10 @@ class Post
 
 	public function load()
 	{
-		if (!$this->exists()) return false;
+		if (!$this->exists()) {
+			echo $this->file;	//	***Debugging
+			return false;
+		}
 
 		$lines = file($this->file);
 		$this->date = $lines[0];
@@ -128,4 +131,3 @@ function addPost($directory, $file)
 
 // assign root to value from config.php
 Post::$ROOT = $dir;
-
