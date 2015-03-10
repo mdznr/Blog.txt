@@ -1,3 +1,0 @@
-Feb 18 2012
-<a href="http://vimeo.com/36579366">Inventing on Principle</a>
-Imagine if some of the earlier demos were integrated into a new version of Xcode. Would people who were originally intimidated by code be more likely to try and design iOS and Mac apps? Would non-programmers be more likely to give their app idea a try?

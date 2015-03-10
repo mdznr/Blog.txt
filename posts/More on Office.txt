@@ -1,7 +1,0 @@
-Feb 23 2012
-More on Office for iPad
-John Gruber briefly explaining why Apple will most likely not show off Microsoft's Office suite for iPad:
-<blockquote cite="http://daringfireball.net/linked/2012/02/22/office-ipad-keynote">why share the spotlight with Microsoft? Apple doesn't need to.</blockquote>
-And a bit more from <a href="http://twitter.com/tapbot_paul">Paul Haddad</a> on why I hope Office doesn't come to the iPad:
-<blockquote cite="">Office for iPad: I imagine a 5GB download, 2 minute launch time, incompatible file format and $150 price point.</blockquote>
-Paul's obviously joking, but I do see Microsoft doing stuff like this.

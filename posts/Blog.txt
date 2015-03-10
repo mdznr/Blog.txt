@@ -1,6 +1,0 @@
-Feb 10 2012
-Blog.txt
-I spent a lot of time last night working on my new blog project, "Blog.txt". I am just learning PHP and am learning a lot of cool functions that will help with my project. I discovered that it's probably possible to run this entire thing without MySQL, which would be ideal. For the average user (one who would be looking at a simple blogging system such as this), I think it's important not to use a database. I do realise there are benefits of using a database, but I've chosen not to. I have also put <a href="https://github.com/mdznr/Blog.txt">this project</a> on GitHub. I should have put it up sooner, but this is the first usable version accomplishing the most basic of my goals. This project is also great because it is introducing me to PHP, which I'm going to be using in my Cloud project, which will also most-likely need a database (mostly for URL-Shortening).
-Also, a note on Syntax Highlighting, I am currently using a jQuery/Javascript syntax highlighter that doesn't work all that well, so I'll probably make the switch to Google's option or to <a href="http://rcos.rpi.edu/user/12/">Colin's</a> solution that he presented for today.
-This weekend's goals: working RSS feeds, password protection, pagination.
-Next week's goals: wysiwyg editing, configuration options.

@@ -13,13 +13,13 @@ Here's a quick comparison between the MacBook Air I bought for school and the co
 <tr><td>Other Ports</td><td>Firewire</td><td>Thunderbolt</td></tr>
 <tr><td>Trackpad</td><td>2 crap ones</td><td>1 amazing one</td></tr>
 <tr><td>Bluetooth</td><td>Yes</td><td>Yes</td></tr>
-<tr><td>Battery<sup id="1sup"><a href="#sup1">1</sup></td><td>5 Hours</td><td>5 Hours</td></tr>
+<tr><td>Battery<sup id="1"><a href="#sup1">1</sup></td><td>5 Hours</td><td>5 Hours</td></tr>
 <tr><td>Boot time</td><td>48s</td><td>12s</td></tr>
 <tr><td>Extras</td><td>ethernet cable, fingerprint reader</td><td>backlit keyboard</td></tr>
 <tr><td>Weight</td><td>5.22lbs</td><td>2.38lbs</td></tr>
-<tr><td>Price<sup id="2sup"><a href="#sup2">2</sup></td><td>$1,574</td><td>$1,449</td></tr>
+<tr><td>Price<sup id="2"><a href="#sup2">2</sup></td><td>$1,574</td><td>$1,449</td></tr>
 </table>
 <ol class="footnotes">
-<li id="sup1"><a href="#1sup" class="backLink" title="Return">According to Lenovo website. Students say otherwise.</a></li>
-<li id="sup2"><a href="#2sup" class="backLink" title="Return">Both prices include student discounts. MacBook Air does include a free printer and $100 iTunes gift card (not factored into price).</a></li>
+<li id="sup1"><a href="#1" class="backLink" title="Return">According to Lenovo website. Students say otherwise.</a></li>
+<li id="sup2"><a href="#2" class="backLink" title="Return">Both prices include student discounts. MacBook Air does include a free printer and $100 iTunes gift card (not factored into price).</a></li>
 </ol>

@@ -1,3 +1,0 @@
-Feb 12 2012
-More Blog Updates
-I have links for pages working now, but it makes me wonder whether I should use '<' and '>' or 'Previous' and 'Next' or 'Older' and 'Newer'. Either way, I've got the functionality working so I can think about which one makes more sense. I may even create that 'infinite' scrolling, but with URL arguments.
