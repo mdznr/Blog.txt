@@ -131,10 +131,10 @@
 			</div>
 			<div id='nav'>
 			<?php if ( $paginator->hasNewerPage() ): ?>
-				<a href="?n=<?php echo $paginator->page - 1; ?>">Newer</a>
+				<a href="?n=<?php echo $paginator->page - 1; ?>" class="paginator-newer">Newer</a>
 			<?php endif; ?>
 			<?php if ( $paginator->hasOlderPage(count($posts)) ): ?>
-				<a href="?n=<?php echo $paginator->page + 1; ?>">Older</a>
+				<a href="?n=<?php echo $paginator->page + 1; ?>"class="paginator-older">Older</a>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>

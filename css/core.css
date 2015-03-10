@@ -115,13 +115,23 @@ article:after {
 #nav {
 	text-align: center;
 	word-spacing: 1em;
-	margin: .618em;
+	width: 46.97em;
+	max-width: 100%;
+	margin: auto;
+	padding: 0 1.618em;
+	box-sizing: border-box;
 }
 
 .file {
 	font: .8571428571em Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New" , monospace;
 	padding-top: .618em;
 }
+
+/*
+p:first-of-type {
+	margin-top: .3819em;
+}
+*/
 
 p {
 	text-indent: 0;
@@ -241,6 +251,14 @@ img {
 	text-align: center;
 	position: relative;
 	margin-top: -1.618em;
+}
+
+.paginator-newer {
+	float: left;
+}
+
+.paginator-older {
+	float: right;
 }
 
 /* Mobile */
