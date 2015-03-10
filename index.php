@@ -53,6 +53,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css" />
 <link rel="stylesheet" type="text/css" href="css/core.css" /> <!-- Regular stylesheet -->
+<link href="http://brick.a.ssl.fastly.net/Open+Sans:300,400,600" rel="stylesheet" type="text/css"> <!-- Open Sans -->
 
 <?php echo stylesheetLink(); ?>
 
